@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
-
+const config = require("../config");
 
 const userSchema = new mongoose.Schema({
     firstname: 'string',
@@ -40,7 +40,7 @@ userSchema.pre('save', function (next) {
     if (!user.token) {
         jwt.sign({
             id: user._id
-        }, 'secret', { expiresIn: '14d' }, function (err, token) {
+        }, config.secret, { expiresIn: '14d' }, function (err, token) {
             if (err) {
                 next(err)
             } else {

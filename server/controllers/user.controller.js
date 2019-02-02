@@ -16,7 +16,7 @@ async function createUser(req, res) {
         res.status(200).json({ user: userViewModel(newUser) });
     } catch (e) {
         console.error('Failed to create user: ' + e);
-        res.status(500).json({error:'Can not create user'});
+        res.status(500).json({ error: 'Can not create user' });
     }
 
 }
@@ -29,6 +29,13 @@ function validatePassword(password) {
     return password && password.length >= 6;
 }
 
+async function validateToken(req, res) {
+   
+   res.status(200).json({user:userViewModel(req.user)});
+}
+
 module.exports = {
-    createUser
+    createUser,
+    validateToken
+
 }
