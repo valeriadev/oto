@@ -1,5 +1,6 @@
 const validator = require("email-validator");
 const userService = require("../services/user.service");
+const userViewModel = require("../viewmodel/user");
 
 
 async function createUser(req, res) {
@@ -12,7 +13,7 @@ async function createUser(req, res) {
 
     try {
         const newUser = await userService.createUser(req.body);
-        res.status(200).json({ user: newUser });
+        res.status(200).json({ user: userViewModel(newUser) });
     } catch (e) {
         console.error('Failed to create user: ' + e);
         res.status(500).json({error:'Can not create user'});

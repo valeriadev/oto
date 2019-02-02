@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const jwt = require('jsonwebtoken');
+
 
 const userSchema = new mongoose.Schema({
     firstname: 'string',
     lastname: 'string',
     email: { type: 'string', required: true, unique: true, lowercase: true },
-    password: { type: 'string', required: true }
+    password: { type: 'string', required: true },
+    token: 'string'
 }, { timestamps: true });
 
 
@@ -29,6 +32,25 @@ userSchema.pre('save', function (next) {
             }
         })
     })
+})
+
+userSchema.pre('save', function (next) {
+    let user = this;
+
+    if (!user.token) {
+        jwt.sign({
+            id: user._id
+        }, 'secret', { expiresIn: '14d' }, function (err, token) {
+            if (err) {
+                next(err)
+            } else {
+                user.token = token;
+                next();
+            }
+        });
+    } else {
+        next();
+    }
 })
 
 const User = mongoose.model('User', userSchema);
