@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const config = require("../config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const Regex = require("regex");
 
 
 async function createUser({ firstname, lastname, email, password }) {
@@ -63,10 +64,21 @@ async function login(email, password) {
     return (user && bcrypt.compareSync(password, user.password)) ? user : false;
 }
 
+async function search({ firstname, lastname, email }) {
+    // var regex = new Regex(/(a|b)*abb/);
+    // let a= regex.test("abb");   // true
+    // let b=regex.test("aabb");  // true
+    const first= new Regex("/^"+firstname+"/");
+    const user = await db.User.findOne({ firstname: first, email: email, lastname:lastname});
+  
+    return (user) ? user : false;
+   
+}
 module.exports = {
     createUser,
     validateToken,
     updateUser,
     deleteUser,
-    login
+    login, 
+    search
 }

@@ -7,6 +7,7 @@ function defineRoutes(app) {
     app.post('/user/update', userController.updateUser)
     app.delete('/user', authMiddleware.auth, userController.deleteUser)
     app.post('/user/login', userController.login)
+    app.get('/user/search', userController.search )
 }
 
 module.exports = {

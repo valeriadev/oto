@@ -1,6 +1,8 @@
 const validator = require("email-validator");
 const userService = require("../services/user.service");
 const userViewModel = require("../viewmodel/user");
+const querystring = require('querystring');
+ const url = require('url');
 
 async function createUser(req, res) {
     const { email, password } = req.body;
@@ -62,11 +64,23 @@ async function validateToken(req, res) {
         res.status(500).json({ error: 'Can not login'}); 
     }
 }
+async function search(req, res){
+try{ 
+    const query= req.query;
+    const searchUser = await userService.search(query)
+    res.status(200).json({ user: userViewModel(searchUser)});
+}catch(e){
+    console.error('Failed to search: '+ e);
+    res.status(500).json({ error: 'Can not search'});  
+}
+
+}
 module.exports = {
     createUser,
     validateToken,
     updateUser,
     deleteUser,
-    login
+    login,
+    search
 
 }
