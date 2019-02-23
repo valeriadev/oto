@@ -2,15 +2,14 @@
   <mat-toolbar>Register-step 1</mat-toolbar>
   <form class="example-form">
         <mat-form-field class="example-full-width">
-        <input matInput placeholder="Firstname">
+        <input name="firstName" [(ngModel)]="user.firstName" placeholder="Firstname" matInput>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Lastname">
+          <input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Lastname">
           </mat-form-field>
           <mat-form-field>
-              <input matInput placeholder="Email" [formControl]="emailFormControl"
+              <input matInput name="email" [(ngModel)]="user.email" placeholder="Email" [formControl]="emailFormControl"
                      [errorStateMatcher]="matcher">
-              <mat-hint>Errors appear instantly!</mat-hint>
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                 Please enter a valid email address
               </mat-error>
@@ -19,9 +18,9 @@
               </mat-error>
             </mat-form-field>
           <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+          <input matInput name="password" [(ngModel)]="user.password" placeholder="Password">
           </mat-form-field>
-        <button>Register</button>
+        <button (click)="onAddUser()">Register</button>
   </form>
 </mat-card>
 

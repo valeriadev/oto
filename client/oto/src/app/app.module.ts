@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule, MatCardModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +21,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
