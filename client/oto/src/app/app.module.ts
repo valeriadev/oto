@@ -9,11 +9,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MainPageComponent } from './main-page/main-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterUserComponent,
-    MainPageComponent
+    MainPageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
