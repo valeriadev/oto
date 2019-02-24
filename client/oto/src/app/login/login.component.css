@@ -1,11 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+mat-card{
+  width: 50%;
+  margin: auto;
+  opacity: 0.8;
+}
+mat-form-field, input{
+  width: 100%;
+}
+.example-form {
+  min-width: 150px;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Lato', Roboto, "Helvetica Neue", sans-serif; }
+
+div {
+  background-image:url("/assets/images/ride.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  min-height: 100%;
+}
+img
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
 .loginButton
 {
   margin-bottom: 1%;
   width:30%;
+  min-width: -webkit-fill-available;
   opacity: 0.6;
   display: block;
   margin-left: auto;
@@ -48,3 +77,4 @@ font-size: xx-large;
 	position:relative;
 	top:1px;
 }
+

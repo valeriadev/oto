@@ -3,10 +3,14 @@ import {
   FormControl,
   FormGroupDirective,
   NgForm,
-  Validators
+  Validators,
+  FormBuilder,
+  FormGroup
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { HttpClient } from "@angular/common/http";
+
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -41,6 +45,9 @@ export class RegisterUserComponent implements OnInit {
     password: "",
     email: ""
   };
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   onAddUser() {
     this.httpClient.post('http://127.0.0.1:8080/user', this.user).subscribe(
@@ -53,8 +60,15 @@ export class RegisterUserComponent implements OnInit {
     );
   }
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private _formBuilder: FormBuilder) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
 }
 

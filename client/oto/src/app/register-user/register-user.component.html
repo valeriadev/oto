@@ -1,28 +1,66 @@
+<div>
+    <mat-toolbar>
+    <img alt="Oto Logo" src="/assets/images/otoLogo.png">
+    </mat-toolbar>
 <mat-card>
-  <mat-toolbar>Register-step 1</mat-toolbar>
-  <form class="example-form">
-        <mat-form-field class="example-full-width">
-        <input name="firstName" [(ngModel)]="user.firstName" placeholder="Firstname" matInput>
+    <mat-toolbar>Register</mat-toolbar>
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <input matInput name="firstName" [(ngModel)]="user.firstName" placeholder="Firstname" formControlName="firstCtrl" required>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Lastname">
+        <mat-form-field>
+            <input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Lastname" formControlName="firstCtrl" required>
           </mat-form-field>
           <mat-form-field>
-              <input matInput name="email" [(ngModel)]="user.email" placeholder="Email" [formControl]="emailFormControl"
-                     [errorStateMatcher]="matcher">
-              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
-              </mat-error>
-              <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+              <input type="email" matInput name="email" [(ngModel)]="user.email" placeholder="Email" formControlName="firstCtrl" required>
             </mat-form-field>
-          <mat-form-field class="example-full-width">
-          <input matInput name="password" [(ngModel)]="user.password" placeholder="Password">
+            <mat-form-field>
+                <input type="tel" matInput name="phone" placeholder="Phone" formControlName="firstCtrl"  pattern="[0-9]{3}-[0-9]{7}" required>
+              </mat-form-field>
+            <mat-form-field>
+                <input type="password" matInput name="password" [(ngModel)]="user.password" placeholder="Password" formControlName="firstCtrl" required>
+              </mat-form-field>
+
+          <button mat-button matStepperNext>Next</button>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Country" formControlName="secondCtrl">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="City" formControlName="secondCtrl">
           </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Street" formControlName="secondCtrl">
+            </mat-form-field>
+
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
         <button (click)="onAddUser()">Register</button>
-  </form>
+
+    </mat-step>
+  </mat-horizontal-stepper>
 </mat-card>
+</div>
+
+
 
 
 

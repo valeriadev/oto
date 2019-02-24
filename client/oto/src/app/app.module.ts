@@ -10,12 +10,22 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './login/login.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTabsModule} from '@angular/material/tabs';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import {MatIconModule} from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
     RegisterUserComponent,
     MainPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent,
+    HomePageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +36,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
