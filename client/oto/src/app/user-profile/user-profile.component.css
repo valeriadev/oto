@@ -1,0 +1,27 @@
+.profileOrange{
+  background-color: orange;
+
+}
+
+mat-card{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size: 1.5em;
+  line-height: 2;
+  text-align: center;
+
+}
+.loginButton{
+  width: 60%;
+  opacity: 0.9;
+  font-size: large;
+}
+.avatar{
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+}

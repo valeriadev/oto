@@ -1,0 +1,19 @@
+<div>
+    <img alt="Oto Logo" src="/assets/images/otoLogo.png">
+<mat-card>
+    <form class="example-form">
+            <mat-form-field >
+                <input matInput name="email" [(ngModel)]="user.email" placeholder="Email">
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+            <input type="password" matInput name="password" [(ngModel)]="user.password" placeholder="Password">
+            </mat-form-field>
+          <button (click)="onLogin()" class=loginButton>Login</button>
+    </form>
+  </mat-card>
+</div>
+
+
+
+
+

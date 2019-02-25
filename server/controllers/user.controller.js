@@ -68,7 +68,7 @@ async function search(req, res){
 try{ 
     const query= req.query;
     const searchUser = await userService.search(query)
-    res.status(200).json({ user: userViewModel(searchUser)});
+    res.status(200).json(userViewModel(searchUser));
 }catch(e){
     console.error('Failed to search: '+ e);
     res.status(500).json({ error: 'Can not search'});  

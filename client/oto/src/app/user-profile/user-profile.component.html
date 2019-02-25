@@ -1,0 +1,17 @@
+<mat-card>
+    <img src="/assets/images/avatar.png" alt="Boss" style="width:10%" class="avatar">
+<div class=profileOrange>
+    <mat-icon>face</mat-icon>  {{user.firstname}} {{user.lastname}}
+    <br>
+    <mat-icon>call</mat-icon>  {{user.phone}}
+    <br>
+    <mat-icon>email</mat-icon>  {{user.email}}
+    <br>
+</div>
+<div>
+    <mat-icon>home</mat-icon>
+     {{user.country}} {{user.city}} {{user.street}}
+</div>
+<button class='loginButton' routerLink='/user/update' class=loginButton>Edit Your Acount</button>
+</mat-card>
+
