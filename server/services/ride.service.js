@@ -53,7 +53,7 @@ async function search({ origin, dest, date }) {
     const newDate = new Regex("/^"+date+"/");
     const ride = await db.User.find({ origin: from, dest: to, date: newDate });
   
-    return (ride.driver)// ? ride : false;
+    return (ride) ? ride : false;
    
 }
 module.exports = {
