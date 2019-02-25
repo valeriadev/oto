@@ -1,0 +1,30 @@
+<mat-card>
+  <p>
+  Enter some details
+  </p>
+
+  <form class="example-form" >
+    <mat-form-field class="example-full-width" text >
+      <input matInput placeholder="From" [(ngModel)]="newOrigin" name="newOrigin">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="To" [(ngModel)]="newDest" name="newDest">
+    </mat-form-field>
+
+    <mat-form-field class="date">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newDate" name="newDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Choose time" atp-time-picker type="time" [(ngModel)]="newTime" name="newTime"/>
+    </mat-form-field>
+    <button mat-raised-button (click)="ngOnInit()">Look for a ride</button>
+  </form>
+</mat-card>
+<p>{{ setOrigin }}</p>
+<p>{{ setDest }}</p>
+<p>{{ setDate }}</p>
+<p>{{ setTime }}</p>

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json())
 
+require("./routers/rides.router").defineRoutes(app);
 require("./routers/users.router").defineRoutes(app);
 
 app.listen(8080,(error)=>{
