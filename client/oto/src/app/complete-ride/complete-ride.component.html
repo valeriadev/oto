@@ -1,0 +1,31 @@
+
+<mat-card>
+    <mat-toolbar>
+        <span>Complete ride</span>
+      </mat-toolbar>
+<hr>
+  <mat-form-field appearance="fill">
+      <mat-label>Date:</mat-label>
+      <input [(ngModel)]="enteredComment" matInput placeholder="">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+      <mat-label>Total riders:</mat-label>
+      <input [(ngModel)]="enteredComment" matInput placeholder="">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+      <mat-label>Destination:</mat-label>
+      <input [(ngModel)]="enteredComment" matInput placeholder="">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+      <mat-label>Leave your comment</mat-label>
+      <input [(ngModel)]="enteredComment" matInput placeholder="">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+    <star-rating labelPosition="top" labelText="Rate the ride!" [rating]="2"  (ratingChange)="onRatingChange($event)"></star-rating>
+
+      <button mat-raised-button color='primary' (click)="onFinsihRating()">
+          done rating</button>
+          <hr>
+</mat-card>
