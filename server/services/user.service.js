@@ -65,16 +65,12 @@ async function login(email, password) {
 }
 
 async function search({ firstname, lastname, email }) {
-<<<<<<< HEAD
-    const first= new Regex("/^"+firstname+"/");
-    const user = await db.User.findOne({ firstname: first, email: email, lastname:lastname});
-=======
     // var regex = new Regex(/(a|b)*abb/);
     // let a= regex.test("abb");   // true
     // let b=regex.test("aabb");  // true
     // const first= new Regex("/^"+firstname+"/");
     const user = await db.User.findOne({ firstname: firstname, email: email, lastname:lastname});
->>>>>>> 04d1016464402fb9393a1fb91346a936ec1ff892
+
   
     return (user) ? user : false;
    

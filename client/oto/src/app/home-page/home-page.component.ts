@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { }
   onLogin() {
-    this.httpClient.post('http://127.0.0.1:8080/user/homepage',1).subscribe(
+    this.httpClient.post('http://127.0.0.1:8080/user/homepage', 1).subscribe(
       data => {
         console.log('POST Request is successful', data);
       },

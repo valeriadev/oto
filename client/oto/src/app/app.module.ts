@@ -29,6 +29,7 @@ import { NewDriveComponent } from './new-drive/new-drive.component';
 import {StarRatingModule} from 'angular-star-rating';
 import { VisitedProfileComponent } from './visited-profile/visited-profile.component';
 import { CompleteRideComponent } from './complete-ride/complete-ride.component';
+import { CreateRideComponent } from './create-ride/create-ride.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { CompleteRideComponent } from './complete-ride/complete-ride.component';
     PageNotFoundComponent,
     LoginComponent,
     HomePageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CreateRideComponent
   ],
   imports: [
     MatToolbarModule,
@@ -78,7 +80,8 @@ import { CompleteRideComponent } from './complete-ride/complete-ride.component';
     HttpClientModule,
     MatStepperModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    StarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

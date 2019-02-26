@@ -34,7 +34,7 @@ async function updateRide(req, res){
 
 async function deleteRide(req,res){
     try{
-         const rideDelete = await rideService.deleteRide(req.ride._id);
+         const rideDelete = await rideService.deleteRide(req.query.id);
          res.status(200).json({ride: rideViewModel(rideDelete)});
     }catch(e){
         console.error('Failed to delete ride: '+ e);
@@ -45,8 +45,8 @@ async function deleteRide(req,res){
 async function search(req, res){
 try{ 
     const query = req.query;
-    const searchRide = await rideService.search(query)
-    res.status(200).json({ ride: rideViewModel(searchRide)});
+    const rideSearch = await rideService.search(query)
+    res.status(200).json(rideSearch);
 }catch(e){
     console.error('Failed to search: '+ e);
     res.status(500).json({ error: 'Can not search'});  

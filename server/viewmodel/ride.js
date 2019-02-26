@@ -5,7 +5,7 @@ function convertRide(ride){
         return {
             origin:ride.origin,
             dest:ride.dest,
-            data:ride.date,
+            date:ride.date,
             token: ride.token
         }
     }
