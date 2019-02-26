@@ -91,7 +91,7 @@ import { TokenInterceptor } from "./services/token.service";
     MatTabsModule,
     MatIconModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD7yq3Lp_pA3Azv40sAY3AUvTAuN5hgCAY'
+      apiKey: ''
     }),
     GooglePlaceModule,
     AgmDirectionModule
