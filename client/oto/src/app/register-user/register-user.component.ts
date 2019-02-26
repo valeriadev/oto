@@ -9,6 +9,7 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { HttpClient } from "@angular/common/http";
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 
 
@@ -33,6 +34,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: "./register-user.component.html",
   styleUrls: ["./register-user.component.css"]
 })
+
 export class RegisterUserComponent implements OnInit {
   emailFormControl = new FormControl("", [
     Validators.required

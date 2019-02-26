@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
+import { TokenInterceptor } from '../services/token.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,8 +16,9 @@ export class LoginComponent implements OnInit {
   };
   onLogin() {
     this.httpClient.post('http://127.0.0.1:8080/user/login', this.user).subscribe(
-      (data) => {
+      (data:any) => {
         console.log('POST Request is successful', data);
+        TokenInterceptor.token = data.user.token;
         this.router.navigateByUrl('/user/homepage').then(e => {
           if (e) {
             console.log("Navigation is successful!");
