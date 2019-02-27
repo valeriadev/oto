@@ -6,12 +6,11 @@ import {
   Validators,
   FormBuilder,
   FormGroup
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { HttpClient } from '@angular/common/http';
 
-
-
+} from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material/core";
+import { HttpClient } from "@angular/common/http";
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -30,11 +29,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 @Component({
   selector: "app-register-user",
-  templateUrl: "./register-user.component.html",
-  styleUrls: ["./register-user.component.css"]
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css']
 })
+
 export class RegisterUserComponent implements OnInit {
-  emailFormControl = new FormControl("", [
+  emailFormControl = new FormControl('', [
     Validators.required
     // Validators.email,
   ]);

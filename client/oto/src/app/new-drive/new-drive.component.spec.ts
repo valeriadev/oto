@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NewDriveComponent } from './new-drive.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSort, MatTableDataSource} from '@angular/material';
 
 describe('NewDriveComponent', () => {
   let component: NewDriveComponent;

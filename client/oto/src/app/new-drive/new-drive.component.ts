@@ -24,13 +24,13 @@ export class NewDriveComponent implements OnInit {
     this.setTime = this.newTime;*/
   }
   onSearchRide() {
-    this.httpClient.get('http://127.0.0.1:8080/ride/search', this.rideSearch).subscribe(
-      data => {
-        console.log("Search Request is successful ", data);
+    this.httpClient.get(`http://127.0.0.1:8080/ride/search?date=${this.rideSearch.date}&dest=${this.rideSearch.dest}&origin=${this.rideSearch.origin}`).subscribe(
+      (data : any)=> {
+        console.log('Search Request is successful ', data);
         this.rides = data;
       },
       error => {
-        console.log("Error", error);
+        console.log('Error', error);
       }
     );
   }

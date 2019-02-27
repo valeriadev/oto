@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   user = {
     firstname: 'This is firstname',
@@ -22,6 +23,14 @@ export class UserProfileComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.httpClient.get('http://127.0.0.1:8080/user/search' + this.user.email ).subscribe(
+      data => {
+        console.log("POST Request is successful ", data);
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );
   }
 
 }
