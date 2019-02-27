@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,29 +8,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  user = {
-    firstname: 'This is firstname',
-    lastname: 'Dana',
-    phone: '050-0000000',
-    email: 'email@gmail.com',
-    country: 'Israel',
-    city: 'RishonLeZion',
-    street: 'EliVizel',
-    number: '2'
-  };
+  user = { };
 
   ngOnInit() {
-    this.httpClient.get('http://127.0.0.1:8080/user/search' + this.user.email ).subscribe(
-      data => {
-        console.log("POST Request is successful ", data);
+    this.httpClient.get('http://127.0.0.1:8080/user/validate').subscribe(
+      (data: any) => {
+        this.user = data.user;
       },
       error => {
-        console.log("Error", error);
+        console.log('Error', error);
       }
     );
   }
-
 }
