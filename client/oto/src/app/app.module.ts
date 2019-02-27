@@ -17,7 +17,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatAutocompleteModule} from "@angular/material/autocomplete"
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatListModule} from '@angular/material/list';
+
 
 
 
@@ -50,6 +52,7 @@ import { AgmDirectionModule } from 'agm-direction';
 import { TokenInterceptor } from "./services/token.service";
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
+import { DestGraphDirective } from './dest-graph.directive';
 
 
 
@@ -70,10 +73,12 @@ import { LiveUsersComponent } from './live-users/live-users.component';
     CreateRideComponent,
     MapComponent,
     ProfileEditComponent,
-    LiveUsersComponent
+    LiveUsersComponent,
+    DestGraphDirective
 
   ],
   imports: [
+    MatListModule,
     FormsModule,
     MatToolbarModule,
     MatAutocompleteModule,

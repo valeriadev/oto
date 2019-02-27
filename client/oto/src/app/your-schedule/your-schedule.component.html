@@ -1,6 +1,8 @@
 
 <mat-card>
+
   <div class="weekDays-selector">
+      <h6>Choose the days:</h6>
     <input type="checkbox" id="weekday-sun" class="weekday" (click)="addSelectedTab('Sunday')"/>
     <label for="weekday-sun">S</label>
     <input type="checkbox" id="weekday-mon" class="weekday" (click)="addSelectedTab('Monday')" />
@@ -19,28 +21,35 @@
     <mat-tab-group [selectedIndex]="selected.value"
                  (selectedIndexChange)="selected.setValue($event)">
     <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-      <form>
+        <form>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Leave home time:" atp-time-picker
-             type="time" name="leaveHome" />
+             type="time" name="leaveHome" [(ngModel)]="ride1.time"/>
         </mat-form-field>
           <mat-form-field class="example-full-width">
               <input matInput placeholder="Leave college time:" atp-time-picker
-               type="time" name="leavecollege" [(ngModel)]="leave-college"/>
+               type="time" name="leavecollege" [(ngModel)]="ride2.time"/>
           </mat-form-field>
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="From" name="from" [(ngModel)]="from"></textarea>
+                <textarea matInput placeholder="From" name="from" [(ngModel)]="ride1.origin">
+                </textarea>
               </mat-form-field>
               <mat-form-field class="example-full-width">
-                  <textarea matInput placeholder="To" name="to" [(ngModel)]="to"></textarea>
+                  <textarea matInput placeholder="To" name="to" [(ngModel)]="ride2.dest"></textarea>
+              </mat-form-field>
+
+                <mat-form-field class='note' appearance="outline">
+                    <mat-label>note</mat-label>
+                    <input matInput placeholder="Leave a note">
                 </mat-form-field>
-                          Contents for {{tab}}
       </form>
         <button mat-raised-button
           class="example-delete-tab-button"
           (click)="saveChanges(tab,departure)">
           Save changes
         </button>
+        <br>
+        Contents for {{tab}}
     </mat-tab>
   </mat-tab-group>
 
