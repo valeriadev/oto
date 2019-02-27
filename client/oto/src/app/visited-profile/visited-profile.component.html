@@ -3,21 +3,19 @@
   <mat-toolbar>
         <mat-icon matSuffix>round-person-24px</mat-icon>
         <span >Profile</span>
-      </mat-toolbar>
+  </mat-toolbar>
 <mat-card>
-      <form>
-  <mat-form-field appearance="fill">
-      <picture class="pic">
-          <img src="HE.jpeg" alt="profile img" width="50" height="60">
-      </picture>
-      <h2  style="color:black;"> User name</h2>
-      <h4 style="color:black;"> College</h4>
-
-      <input [(ngModel)]="enteredComment" matInput placeholder="" name: >
-
-  </mat-form-field>
+    <form>
+      <mat-form-field appearance="fill">
+         <picture class="pic">
+           <img src="/assets/images/HE.jpeg" alt="profile img" width="50" height="60">
+         </picture>
+        <h2  style="color:black;"> User name</h2>
+        <h4 style="color:black;"> College</h4>
+        <input [(ngModel)]="enteredComment" matInput placeholder="">
+      </mat-form-field>
         <star-rating labelPosition="top" [rating]="2"  (ratingChange)="onRatingChange($event)"></star-rating>
-      </form>
+    </form>
 </mat-card>
 
 <hr>
@@ -25,8 +23,9 @@
       <mat-label>OTO History and Feedback:</mat-label>
       <input [(ngModel)]="enteredComment" matInput placeholder="">
   </mat-form-field>
+
   <mat-form-field appearance="fill">
       <mat-label>Mutual friends</mat-label>
       <input [(ngModel)]="enteredComment" matInput placeholder="">
-  </mat-form-field>
+    </mat-form-field>
 </mat-card>

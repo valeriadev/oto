@@ -2,6 +2,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 import {MatButtonModule, MatExpansionModule, MatDatepickerModule,
    MatNativeDateModule, MatInputModule, MatCardModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -11,7 +15,6 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
-import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
@@ -26,6 +29,9 @@ import { NewDriveComponent } from './new-drive/new-drive.component';
 import {StarRatingModule} from 'angular-star-rating';
 import { VisitedProfileComponent } from './visited-profile/visited-profile.component';
 import { CompleteRideComponent } from './complete-ride/complete-ride.component';
+import { UpcomingCarpoolsComponent } from './upcoming-carpools/upcoming-carpools.component';
+import { YourScheduleComponent } from './your-schedule/your-schedule.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { CreateRideComponent } from './create-ride/create-ride.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -33,8 +39,6 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AppComponent } from './app.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
 
 // Google Maps
 import { AgmCoreModule } from '@agm/core';
@@ -58,6 +62,8 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     LoginComponent,
     HomePageComponent,
     UserProfileComponent,
+    UpcomingCarpoolsComponent,
+    YourScheduleComponent,
     RegisterUserComponent,
     CreateRideComponent,
     MapComponent,
@@ -65,9 +71,11 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
   ],
   imports: [
+    FormsModule,
     MatToolbarModule,
     StarRatingModule.forRoot(),
     MatIconModule,
+    MatCheckboxModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatCardModule,
