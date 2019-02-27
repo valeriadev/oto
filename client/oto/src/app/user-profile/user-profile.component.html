@@ -1,3 +1,11 @@
+<mat-form-field>
+    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let user of users" [value]="user.firstname">{{user.firstname}} {{user.lastname}}</mat-option>
+  </mat-autocomplete>
+
 <mat-card>
   <img
     src="/assets/images/avatar.png"
@@ -30,8 +38,15 @@
   <div>
     <mat-icon>home</mat-icon>
     <input *ngIf="isEdit" type="text" [(ngModel)]="user.address" />
-    <span *ngIf="!isEdit"> {{ user.address }}</span>  </div>
+    <span *ngIf="!isEdit"> {{ user.address }}</span>
+  </div>
   <div *ngIf="isEdit">
     <button (click)="save()">Update Profile</button>
+  </div>
+
+  <div>
+    <button mat-button color="warn" (click)="delete()">
+      Delete my profile
+    </button>
   </div>
 </mat-card>

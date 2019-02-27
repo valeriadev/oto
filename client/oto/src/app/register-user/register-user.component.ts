@@ -11,6 +11,7 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { HttpClient } from "@angular/common/http";
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { Router } from '@angular/router';
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -40,8 +41,10 @@ export class RegisterUserComponent implements OnInit {
   ]);
   matcher = new MyErrorStateMatcher();
   user = {
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
+    address: "",
+    phone: "",
     password: "",
     email: ""
   };
@@ -53,6 +56,8 @@ export class RegisterUserComponent implements OnInit {
     this.httpClient.post('http://127.0.0.1:8080/user', this.user).subscribe(
       data => {
         console.log("POST Request is successful ", data);
+        this.router.navigateByUrl('/user/login');
+
       },
       error => {
         console.log("Error", error);
@@ -60,7 +65,7 @@ export class RegisterUserComponent implements OnInit {
     );
   }
 
-  constructor(private httpClient: HttpClient, private _formBuilder: FormBuilder) {}
+  constructor(private httpClient: HttpClient, private _formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

@@ -6,6 +6,7 @@ function defineRoutes(app) {
     app.get('/user/validate', authMiddleware.auth, userController.validateToken)
     app.post('/user/update', userController.updateUser)
     app.delete('/user', authMiddleware.auth, userController.deleteUser)
+    app.get('/users', authMiddleware.auth, userController.getAllUsernames)
     app.post('/user/login', userController.login)
     app.get('/user/search', userController.search )
 }

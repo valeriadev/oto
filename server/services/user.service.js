@@ -6,12 +6,14 @@ const bcrypt = require("bcrypt");
 const Regex = require("regex");
 
 
-async function createUser({ firstname, lastname, email, password }) {
+async function createUser({ firstname, lastname, email, password, phone, address }) {
     return await new db.User({
         firstname,
         lastname,
         email,
-        password
+        password,
+        phone,
+        address
     }).save();
 }
 
@@ -70,11 +72,17 @@ async function search({ firstname, lastname, email }) {
     return (user) ? user : false;
    
 }
+
+async function getAllUserNames() {
+    return await db.User.find({}).select('firstname lastname');
+}
+
 module.exports = {
     createUser,
     validateToken,
     updateUser,
     deleteUser,
     login, 
-    search
+    search,
+    getAllUserNames
 }

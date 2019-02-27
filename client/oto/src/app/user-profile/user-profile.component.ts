@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { HttpClient } from "@angular/common/http";
+import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: "app-user-profile",
@@ -8,9 +10,16 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./user-profile.component.css"]
 })
 export class UserProfileComponent implements OnInit {
-  constructor(private httpClient: HttpClient) {}
 
-  user = {
+  myControl = new FormControl();
+  users = [];
+
+
+  constructor(private httpClient: HttpClient, private router: Router) {
+
+  }
+
+  user:any = {
     firstname: "",
     lastname: "",
     phone: "",
@@ -18,13 +27,13 @@ export class UserProfileComponent implements OnInit {
     // country: "",
     // city: "",
     // street: "",
-    address:'',
-    number: 2
+    address: ""
   };
 
   isEdit = false;
 
   ngOnInit() {
+
     this.httpClient.get("http://127.0.0.1:8080/user/validate").subscribe(
       (data: any) => {
         this.user = data.user;
@@ -33,16 +42,45 @@ export class UserProfileComponent implements OnInit {
         console.log("Error", error);
       }
     );
-  }
 
-  save() {
-    this.httpClient.post("http://127.0.0.1:8080/user/update", this.user).subscribe(
-      (data: any) => {
-        this.user = data.user;
-        this.isEdit = false;
+    this.httpClient.get("http://127.0.0.1:8080/users").subscribe(
+      (users: any) => {
+        this.users = users;
       },
       error => {
         console.log("Error", error);
       }
-    );  }
+    );
+  }
+
+  save() {
+    this.httpClient
+      .post("http://127.0.0.1:8080/user/update", this.user)
+      .subscribe(
+        (data: any) => {
+          this.user = data.user;
+          this.isEdit = false;
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
+
+  delete() {
+    this.httpClient
+      .delete("http://127.0.0.1:8080/user")
+      .subscribe(
+        (data: any) => {
+          this.user =  {};
+          this.isEdit = false;
+
+          this.router.navigateByUrl('/welcome');
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+  }
+
 }

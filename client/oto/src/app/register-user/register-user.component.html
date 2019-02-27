@@ -9,16 +9,16 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out your name</ng-template>
         <mat-form-field>
-          <input matInput name="firstName" [(ngModel)]="user.firstName" placeholder="Firstname" formControlName="firstCtrl" required>
+          <input matInput name="firstname" [(ngModel)]="user.firstname" placeholder="Firstname" formControlName="firstCtrl" required>
         </mat-form-field>
         <mat-form-field>
-            <input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Lastname" formControlName="firstCtrl" required>
+            <input matInput name="lastname" [(ngModel)]="user.lastname" placeholder="Lastname" formControlName="firstCtrl" required>
           </mat-form-field>
           <mat-form-field>
               <input type="email" matInput name="email" [(ngModel)]="user.email" placeholder="Email" formControlName="firstCtrl" required>
             </mat-form-field>
             <mat-form-field>
-                <input type="tel" matInput name="phone" placeholder="Phone" formControlName="firstCtrl"  pattern="[0-9]{3}-[0-9]{7}" required>
+                <input type="tel" matInput name="phone" [(ngModel)]="user.phone" placeholder="Phone" formControlName="firstCtrl"  pattern="[0-9]{3}-[0-9]{7}" required>
               </mat-form-field>
             <mat-form-field>
                 <input type="password" matInput name="password" [(ngModel)]="user.password" placeholder="Password" formControlName="firstCtrl" required>
@@ -35,14 +35,8 @@
             <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="autocomplete" formControlName="secondCtrl">
     </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Country" formControlName="secondCtrl">
+            <input matInput placeholder="Address" name="address" [(ngModel)]='user.address' formControlName="secondCtrl">
           </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="City" formControlName="secondCtrl">
-          </mat-form-field>
-          <mat-form-field>
-              <input matInput placeholder="Street" formControlName="secondCtrl">
-            </mat-form-field>
 
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
