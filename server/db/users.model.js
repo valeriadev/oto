@@ -7,6 +7,8 @@ const config = require("../config");
 const userSchema = new mongoose.Schema({
     firstname: 'string',
     lastname: 'string',
+    phone: 'string',
+    address: 'string',
     email: { type: 'string', required: true, unique: true, lowercase: true },
     password: { type: 'string', required: true },
     token: 'string'

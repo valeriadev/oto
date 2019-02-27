@@ -15,9 +15,10 @@ export class UserProfileComponent implements OnInit {
     lastname: "",
     phone: "",
     email: "",
-    country: "",
-    city: "",
-    street: "",
+    // country: "",
+    // city: "",
+    // street: "",
+    address:'',
     number: 2
   };
 
@@ -35,6 +36,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   save() {
-    alert("Save the motherfucker!!");
-  }
+    this.httpClient.post("http://127.0.0.1:8080/user/update", this.user).subscribe(
+      (data: any) => {
+        this.user = data.user;
+        this.isEdit = false;
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );  }
 }

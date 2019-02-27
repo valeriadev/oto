@@ -5,21 +5,33 @@
     style="width:10%"
     class="avatar"
   />
-  <mat-slide-toggle [checked]="isEdit" >Edit</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="isEdit" [checked]="isEdit"
+    >Edit</mat-slide-toggle
+  >
   <div class="profileOrange">
     <div>
       <mat-icon>face</mat-icon>
 
-      {{ user.firstname }} {{ user.lastname }}
+      <input *ngIf="isEdit" type="text" [(ngModel)]="user.firstname" />
+      <input *ngIf="isEdit" type="text" [(ngModel)]="user.lastname" />
+      <span *ngIf="!isEdit"> {{ user.firstname }} {{ user.lastname }}</span>
     </div>
-    <div><mat-icon>call</mat-icon> {{ user.phone }}</div>
-    <div><mat-icon>email</mat-icon> {{ user.email }}</div>
+    <div>
+      <mat-icon>call</mat-icon>
+      <input *ngIf="isEdit" type="tel" [(ngModel)]="user.phone" />
+      <span *ngIf="!isEdit"> {{ user.phone }}</span>
+    </div>
+    <div>
+      <mat-icon>email</mat-icon>
+      <input *ngIf="isEdit" type="email" [(ngModel)]="user.email" />
+      <span *ngIf="!isEdit"> {{ user.email }}</span>
+    </div>
   </div>
   <div>
     <mat-icon>home</mat-icon>
-    {{ user.country }} {{ user.city }} {{ user.street }}
-  </div>
+    <input *ngIf="isEdit" type="text" [(ngModel)]="user.address" />
+    <span *ngIf="!isEdit"> {{ user.address }}</span>  </div>
   <div *ngIf="isEdit">
-      <button (click)="save()">Update Profile</button>
+    <button (click)="save()">Update Profile</button>
   </div>
 </mat-card>
