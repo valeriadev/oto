@@ -13,6 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 /** Http interceptor providers in outside-in order */
@@ -41,6 +43,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AgmDirectionModule } from 'agm-direction';
 //services
 import { TokenInterceptor } from "./services/token.service";
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 
 
@@ -57,7 +60,8 @@ import { TokenInterceptor } from "./services/token.service";
     UserProfileComponent,
     RegisterUserComponent,
     CreateRideComponent,
-    MapComponent
+    MapComponent,
+    ProfileEditComponent
 
   ],
   imports: [
@@ -65,6 +69,7 @@ import { TokenInterceptor } from "./services/token.service";
     StarRatingModule.forRoot(),
     MatIconModule,
     ReactiveFormsModule,
+    MatSlideToggleModule,
     MatCardModule,
     MatButtonModule,
     FormsModule,
