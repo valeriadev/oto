@@ -24,8 +24,9 @@ export class NewDriveComponent implements OnInit {
     this.setTime = this.newTime;*/
   }
   onSearchRide() {
+// tslint:disable-next-line: max-line-length
     this.httpClient.get(`http://127.0.0.1:8080/ride/search?date=${this.rideSearch.date}&dest=${this.rideSearch.dest}&origin=${this.rideSearch.origin}`).subscribe(
-      (data : any)=> {
+      (data: any) => {
         console.log('Search Request is successful ', data);
         this.rides = data;
       },

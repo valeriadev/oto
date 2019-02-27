@@ -69,7 +69,6 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     CreateRideComponent,
     MapComponent,
     ProfileEditComponent
-
   ],
   imports: [
     FormsModule,
