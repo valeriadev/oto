@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
     this.httpClient.post('http://127.0.0.1:8080/user/login', this.user).subscribe(
       (data:any) => {
         console.log('POST Request is successful', data);
+        if(!(data && data.user && data.user.token)) {
+          alert('Bad user info');
+          return;
+        }
         TokenInterceptor.token = data.user.token;
         this.websocketService.setUserLoggedIn(`${data.user.firstname} ${data.user.lastname}`);
         this.router.navigateByUrl('/user/homepage').then(e => {

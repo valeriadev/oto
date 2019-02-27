@@ -12,6 +12,7 @@ async function createRide(req, res) {
     }*/
 
     try {
+        req.body.driver = req.user._id;
         const newRide = await rideService.createRide(req.body);
         res.status(200).json({ ride: rideViewModel(newRide) });
     } catch (e) {
