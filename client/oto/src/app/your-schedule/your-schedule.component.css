@@ -1,0 +1,65 @@
+.weekDays-selector input {
+  display: none!important;
+}
+
+.weekDays-selector input[type=checkbox] + label {
+  display: inline-block;
+  border-radius: 6px;
+  background: #dddddd;
+  height: 35px;
+  width: 25px;
+  margin-right: 3px;
+  line-height: 35px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.weekDays-selector input[type=checkbox]:checked + label {
+  background: rgb(85, 134, 240);
+  color: #ffffff;
+}
+
+
+.example-full-width {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.fromTo{
+  width: 100%;
+  font-size: 1.5em;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+
+mat-card{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size: 1.5em;
+  line-height: 2;
+  text-align: center;
+}
+
+.one {
+  width: 50%;
+  height: 200px;
+  background: red;
+  float: left;
+}
+.two {
+  margin-left: 30%;
+  height: 200px;
+  background: black;
+}
+
+.example-input-label,
+.example-add-tab-button,
+.example-delete-tab-button {
+  margin: 8px;
+}
