@@ -50,6 +50,7 @@ import { AgmDirectionModule } from 'agm-direction';
 import { TokenInterceptor } from "./services/token.service";
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
+import { DestGraphDirective } from './dest-graph.directive';
 
 
 
@@ -70,7 +71,8 @@ import { LiveUsersComponent } from './live-users/live-users.component';
     CreateRideComponent,
     MapComponent,
     ProfileEditComponent,
-    LiveUsersComponent
+    LiveUsersComponent,
+    DestGraphDirective
 
   ],
   imports: [

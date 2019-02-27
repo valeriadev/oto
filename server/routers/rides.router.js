@@ -6,6 +6,7 @@ function defineRoutes(app) {
     app.post('/ride/update', rideController.updateRide)
     app.delete('/ride', authMiddleware.auth, rideController.deleteRide)
     app.get('/ride/search', rideController.search )
+    app.get('/rides/stats/dest', rideController.ridesByDest)
 }
 
 module.exports = {

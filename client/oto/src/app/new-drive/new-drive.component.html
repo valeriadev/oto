@@ -24,6 +24,10 @@
     <button mat-raised-button (click)="onSearchRide()">Look for a ride</button>
   </form>
 </mat-card>
+<!-- <div id='graph' style="width:300px;height: 300px;" appDestGraph></div> -->
+<svg width='600' height='600' appDestGraph></svg>
+
+
 <p>{{ rideSearch.origin }}</p>
 <p>{{ rideSearch.dest }}</p>
 <p>{{ rideSearch.date }}</p>
@@ -36,3 +40,6 @@
   </div>
 </div>
 </mat-card>
+
+
+
