@@ -24,6 +24,8 @@ import { NewDriveComponent } from './new-drive/new-drive.component';
 import {StarRatingModule} from 'angular-star-rating';
 import { VisitedProfileComponent } from './visited-profile/visited-profile.component';
 import { CompleteRideComponent } from './complete-ride/complete-ride.component';
+
+import { CreateRideComponent } from './create-ride/create-ride.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -41,19 +43,22 @@ import { AgmDirectionModule } from 'agm-direction';
 import { TokenInterceptor } from "./services/token.service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     CompleteRideComponent,
     VisitedProfileComponent,
     NewDriveComponent,
-    RegisterUserComponent,
     MainPageComponent,
     PageNotFoundComponent,
     LoginComponent,
     HomePageComponent,
     UserProfileComponent,
+    RegisterUserComponent,
+    CreateRideComponent,
     MapComponent
+
   ],
   imports: [
     MatToolbarModule,
@@ -90,11 +95,14 @@ import { TokenInterceptor } from "./services/token.service";
     MatStepperModule,
     MatTabsModule,
     MatIconModule,
+
+    StarRatingModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD7yq3Lp_pA3Azv40sAY3AUvTAuN5hgCAY'
+      apiKey: ''
     }),
     GooglePlaceModule,
     AgmDirectionModule
+
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

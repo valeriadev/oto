@@ -14,7 +14,6 @@ export class HomePageComponent implements OnInit {
   user = {};
 
   constructor(private httpClient: HttpClient) { }
-
   ngOnInit() {
   }
 

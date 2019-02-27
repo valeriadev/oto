@@ -5,26 +5,34 @@
 
   <form class="example-form" >
     <mat-form-field class="example-full-width" text >
-      <input matInput placeholder="From" [(ngModel)]="newOrigin" name="newOrigin">
+      <input matInput placeholder="From" [(ngModel)]="rideSearch.origin" name="origin">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="To" [(ngModel)]="newDest" name="newDest">
+        <input matInput placeholder="To" [(ngModel)]="rideSearch.dest" name="dest">
     </mat-form-field>
 
     <mat-form-field class="date">
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newDate" name="newDate">
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="rideSearch.date" name="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Choose time" atp-time-picker type="time" [(ngModel)]="newTime" name="newTime"/>
+        <input matInput placeholder="Choose time" atp-time-picker type="time" [(ngModel)]="rideSearch.time" name="time"/>
     </mat-form-field>
-    <button mat-raised-button (click)="ngOnInit()">Look for a ride</button>
+    <button mat-raised-button (click)="onSearchRide()">Look for a ride</button>
   </form>
 </mat-card>
-<p>{{ setOrigin }}</p>
-<p>{{ setDest }}</p>
-<p>{{ setDate }}</p>
-<p>{{ setTime }}</p>
+<p>{{ rideSearch.origin }}</p>
+<p>{{ rideSearch.dest }}</p>
+<p>{{ rideSearch.date }}</p>
+<p>{{ rideSearch.time }}</p>
+
+<mat-card>
+<div>
+  <div *ngFor="let ride of rides">
+    {{ ride.origin}} {{ride.dest}}
+  </div>
+</div>
+</mat-card>
