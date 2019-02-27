@@ -97,10 +97,9 @@ import { TokenInterceptor } from "./services/token.service";
     MatIconModule,
 
     StarRatingModule,
-
-    /*AgmCoreModule.forRoot({
-
-    }),*/
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    }),
     GooglePlaceModule,
     AgmDirectionModule
 
