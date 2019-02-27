@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {PeriodicElement} from './PeriodElement.module'
+import { Ride } from '../your-schedule/ride.model';
 
 @Component({
   selector: 'app-new-drive',
   templateUrl: './new-drive.component.html',
   styleUrls: ['./new-drive.component.css']
 })
+
+
+
 export class NewDriveComponent implements OnInit {
+
+  displayedColumns: string[] = ['origin', 'dest', 'date', 'time', 'driver', 'id'];
+  ELEMENT_DATA: Ride[];
 
   rides = [];
   rideSearch = {
@@ -17,6 +25,7 @@ export class NewDriveComponent implements OnInit {
    // driver: '',
    // id: ''
   };
+
   ngOnInit() {
    /* this.setDest = this.newDest;
     this.setOrigin = this.newOrigin;
@@ -29,10 +38,12 @@ export class NewDriveComponent implements OnInit {
       (data: any) => {
         console.log('Search Request is successful ', data);
         this.rides = data;
+
       },
       error => {
         console.log('Error', error);
       }
+
     );
   }
   constructor(private httpClient: HttpClient) {}

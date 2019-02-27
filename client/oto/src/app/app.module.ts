@@ -17,7 +17,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatAutocompleteModule} from "@angular/material/autocomplete"
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatListModule} from '@angular/material/list';
+
 
 
 
@@ -76,6 +78,7 @@ import { DestGraphDirective } from './dest-graph.directive';
 
   ],
   imports: [
+    MatListModule,
     FormsModule,
     MatToolbarModule,
     MatAutocompleteModule,

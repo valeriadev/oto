@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
+import {Ride} from './ride.model';
 
 @Component({
   selector: 'app-your-schedule',
@@ -8,15 +9,26 @@ import { FormControl, NgForm } from '@angular/forms';
 })
 export class YourScheduleComponent implements OnInit {
 
-  dayDef = {
-    rideDay: '',
-    from: '',
-    to: '',
-    depTime: '',
-    arrivalTime: ''
+  weekRides: Ride[] = [];
+
+  ride1 = {
+    origin: '',
+    dest: '',
+    date: '',
+    time: '',
+    driver: '',
+    id: ''
   };
 
-  departure = '';
+  ride2 = {
+    origin: '',
+    dest: '',
+    date: '',
+    time: '',
+    driver: '',
+    id: ''
+  };
+
   weekIndex = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   tabs = [];
   selected = new FormControl(0);
@@ -58,8 +70,8 @@ export class YourScheduleComponent implements OnInit {
     this.tabs.splice(index, 1);
   }
 
-  saveChanges(tab: string){
-
+  onSaveChanges(tab: string){
+    this.ride1.date = tab;
+    this.ride2.date = tab;
   }
-
 }

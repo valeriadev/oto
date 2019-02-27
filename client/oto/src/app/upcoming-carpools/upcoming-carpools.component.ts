@@ -9,11 +9,12 @@ import { TimePickerComponent } from 'amazing-time-picker/src/app/atp-library/tim
 export class UpcomingCarpoolsComponent implements OnInit {
 
 
-    rideDate: '01.01.2019';
-    rideTime: '10:00';
-    numOfRiders: '3';
+    rideDate: '';
+    rideTime: '';
+    numOfRiders: '';
     ridersImages = [];
     checked = '';
+    listRiders = ['tal', 'gal', 'niv'];
 
 
   constructor() {
