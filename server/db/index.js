@@ -8,5 +8,6 @@ db.once('open', function() {
 
 module.exports = {
     User: require("./users.model"),
-    Ride: require("./rides.model")
+    Ride: require("./rides.model"),
+    Review: require("./reviews.model")
 }

@@ -1,3 +1,29 @@
+<mat-card>
+    <mat-toolbar>Complete ride</mat-toolbar>
+
+        <div>
+            <mat-toolbar>{{ review.user }}</mat-toolbar>
+            <span>{{ review.user }}</span>
+
+            <form>
+                <mat-form-field appearance="outline">
+                    <input type="number" matInput name="rating" [(ngModel)]="review.rating" placeholder="Rating" min="1" max="5">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                      <mat-label>Leave your comment</mat-label>
+                      <input [(ngModel)]="review.notes" matInput placeholder="">
+                      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                  </mat-form-field>
+            </form>
+
+          </div>
+    <star-rating labelPosition="top" labelText="Rate the ride!" (ratingChange)="onRatingChange($event)"></star-rating>
+      <button mat-raised-button color='primary' (click)="onFinsihRating()">
+          done rating</button>
+
+</mat-card>
+
 
 <mat-card>
     <mat-toolbar>
@@ -6,24 +32,26 @@
 <hr>
   <mat-form-field appearance="fill">
       <mat-label>Date:</mat-label>
-      <input [(ngModel)]="enteredComment" matInput placeholder="">
+      <input [(ngModel)]="review.date" matInput placeholder="">
   </mat-form-field>
   <mat-form-field appearance="fill">
       <mat-label>Total riders:</mat-label>
-      <input [(ngModel)]="enteredComment" matInput placeholder="">
+      <input [(ngModel)]="review.totalRiders" matInput placeholder="">
   </mat-form-field>
   <mat-form-field appearance="fill">
       <mat-label>Destination:</mat-label>
-      <input [(ngModel)]="enteredComment" matInput placeholder="">
+      <input [(ngModel)]="review.destination" matInput placeholder="">
   </mat-form-field>
 
   <mat-form-field appearance="outline">
       <mat-label>Leave your comment</mat-label>
-      <input [(ngModel)]="enteredComment" matInput placeholder="">
+      <input [(ngModel)]="review.notes" matInput placeholder="">
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
   </mat-form-field>
-
-    <star-rating labelPosition="top" labelText="Rate the ride!" [rating]="2"  (ratingChange)="onRatingChange($event)"></star-rating>
+  <mat-form-field>
+      <input type="number" matInput name="rating" [(ngModel)]="review.rating" placeholder="Rating" min="1" max="5">
+    </mat-form-field>
+    <star-rating labelPosition="top" labelText="Rate the ride!" (ratingChange)="onRatingChange($event)"></star-rating>
 
       <button mat-raised-button color='primary' (click)="onFinsihRating()">
           done rating</button>

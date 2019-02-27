@@ -5,6 +5,10 @@ import {
   HoverRatingChangeEvent,
   RatingChangeEvent
 } from 'angular-star-rating';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import {UserProfileComponent} from '../user-profile/user-profile.component';
+import {NewDriveComponent} from '../new-drive/new-drive.component';
 
 @Component({
   selector: 'app-complete-ride',
@@ -13,24 +17,33 @@ import {
 })
 
 export class CompleteRideComponent implements OnInit {
+  review = {
+    rating : 5 ,
+    notes : '',
+    user : UserProfileComponent,
+    ride : NewDriveComponent,
+  };
 
-  enteredComment = '';
-  enteredRating = 1;
-  date = '';
-  totalRiders = '';
-  destination = '';
-
-  constructor() { }
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
 
   onFinsihRating() {
-    alert(this.enteredComment);
+    this.httpClient.post('http://127.0.0.1:8080/review/ride', this.review).subscribe(
+      data => {
+        console.log("POST Request is successful ", data);
+        this.router.navigateByUrl('/user/login');
+
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );
   }
 
   onRatingChange = ($event: RatingChangeEvent) => {
-    this.enteredRating = $event.rating;
-    console.log('onRatingUpdated : ' + this.enteredRating);
+    this.review.rating = $event.rating;
+    console.log('onRatingUpdated : ' + this.review.rating);
   }
 }
