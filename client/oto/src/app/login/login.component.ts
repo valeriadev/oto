@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { TokenInterceptor } from '../services/token.service';
+import { WebsocketService } from '../websocket.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +10,7 @@ import { TokenInterceptor } from '../services/token.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router, private websocketService: WebsocketService) { }
   user = {
     password: '' ,
     email: ''
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
       (data:any) => {
         console.log('POST Request is successful', data);
         TokenInterceptor.token = data.user.token;
+        this.websocketService.setUserLoggedIn(`${data.user.firstname} ${data.user.lastname}`);
         this.router.navigateByUrl('/user/homepage').then(e => {
           if (e) {
             console.log("Navigation is successful!");
