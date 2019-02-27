@@ -24,15 +24,23 @@
     <button mat-raised-button (click)="onSearchRide()">Look for a ride</button>
   </form>
 </mat-card>
-<p>{{ rideSearch.origin }}</p>
-<p>{{ rideSearch.dest }}</p>
-<p>{{ rideSearch.date }}</p>
-<p>{{ rideSearch.time }}</p>
 
 <mat-card>
+
 <div>
-  <div *ngFor="let ride of rides">
-    {{ ride.origin}} {{ride.dest}}
+  <table mat-table class="mat-elevation-z8">
+    <td class= "td_cell" mat-cell>origin</td>
+    <td class= "td_cell" mat-cell>dest</td>
+    <td class= "td_cell" mat-cell>time</td>
+    <td class= "td_cell" mat-cell>date</td>
+    <td class= "td_cell" mat-cell>driver</td>
+    <tr *ngFor="let ride of rides">
+    <td mat-cell>{{ride.origin}}</td>
+    <td mat-cell>{{ride.dest}}</td>
+    <td mat-cell>{{ride.time}}</td>
+    <td mat-cell>{{ride.date}}</td>
+    <td mat-cell>{{ride.driver}}</td>
+    </tr>
+    </table>
   </div>
-</div>
 </mat-card>
