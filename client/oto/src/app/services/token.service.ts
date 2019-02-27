@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
       const authReq = req.clone({
         headers: new HttpHeaders({
-          'x-oto-token': TokenInterceptor.token || ""
+          'x-oto-token': TokenInterceptor.token || ''
         })
       });    return next.handle(authReq);
   }

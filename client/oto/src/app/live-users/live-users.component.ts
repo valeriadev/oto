@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { WebsocketService } from "../websocket.service";
+import { Component, OnInit } from '@angular/core';
+import { WebsocketService } from '../websocket.service';
 
 @Component({
-  selector: "app-live-users",
-  templateUrl: "./live-users.component.html",
-  styleUrls: ["./live-users.component.css"]
+  selector: 'app-live-users',
+  templateUrl: './live-users.component.html',
+  styleUrls: ['./live-users.component.css']
 })
 export class LiveUsersComponent implements OnInit {
   liveUsers = [];
@@ -15,8 +15,7 @@ export class LiveUsersComponent implements OnInit {
       this.liveUsers = [...data];
     });
   }
-
-  //https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
+ // https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
   ngOnInit() {}
 
   indexTracker(index: number, value: any) {

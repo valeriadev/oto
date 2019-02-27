@@ -23,6 +23,12 @@ app.listen(8080, error => {
 require("./services/websocket.service").defineWebSocket();
 
 (async function() {
-  await require("./services/car.service").loadAllCars();
-  console.log('Done loading cars')
+  const carService = require("./services/car.service");
+  if (!(await carService.isCarsLoaded())) {
+    await require("./scrapper").run();
+  }
+
+  await carService.loadAllCars();
+
+  console.log("Done loading cars");
 })();

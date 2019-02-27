@@ -2,11 +2,12 @@
     <mat-toolbar>Complete ride</mat-toolbar>
 
         <div>
-            <mat-toolbar>{{ review.user }}</mat-toolbar>
-            <span>{{ review.user }}</span>
+            <mat-toolbar>{{ review.user.firstname }}{{ review.user.lastname }}</mat-toolbar>
+            <span>{{ review.ride.date }}</span>
 
             <form>
                 <mat-form-field appearance="outline">
+                    <mat-label>Rate the driver</mat-label>
                     <input type="number" matInput name="rating" [(ngModel)]="review.rating" placeholder="Rating" min="1" max="5">
                   </mat-form-field>
 
@@ -18,42 +19,8 @@
             </form>
 
           </div>
-    <star-rating labelPosition="top" labelText="Rate the ride!" (ratingChange)="onRatingChange($event)"></star-rating>
-      <button mat-raised-button color='primary' (click)="onFinsihRating()">
-          done rating</button>
-
-</mat-card>
-
-
-<mat-card>
-    <mat-toolbar>
-        <span>Complete ride</span>
-      </mat-toolbar>
-<hr>
-  <mat-form-field appearance="fill">
-      <mat-label>Date:</mat-label>
-      <input [(ngModel)]="review.date" matInput placeholder="">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-      <mat-label>Total riders:</mat-label>
-      <input [(ngModel)]="review.totalRiders" matInput placeholder="">
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-      <mat-label>Destination:</mat-label>
-      <input [(ngModel)]="review.destination" matInput placeholder="">
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-      <mat-label>Leave your comment</mat-label>
-      <input [(ngModel)]="review.notes" matInput placeholder="">
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  </mat-form-field>
-  <mat-form-field>
-      <input type="number" matInput name="rating" [(ngModel)]="review.rating" placeholder="Rating" min="1" max="5">
-    </mat-form-field>
-    <star-rating labelPosition="top" labelText="Rate the ride!" (ratingChange)="onRatingChange($event)"></star-rating>
 
       <button mat-raised-button color='primary' (click)="onFinsihRating()">
           done rating</button>
-          <hr>
+
 </mat-card>

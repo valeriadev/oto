@@ -20,10 +20,10 @@ export class CreateRideComponent implements OnInit {
   onAddRide() {
     this.httpClient.post('http://127.0.0.1:8080/ride/', this.ride).subscribe(
       data => {
-        console.log("POST Request is successful ", data);
+        console.log('POST Request is successful ', data);
       },
       error => {
-        console.log("Error", error);
+        console.log('Error', error);
       }
     );
   }

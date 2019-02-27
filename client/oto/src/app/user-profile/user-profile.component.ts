@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { MatIconModule } from "@angular/material/icon";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: "app-user-profile",
-  templateUrl: "./user-profile.component.html",
-  styleUrls: ["./user-profile.component.css"]
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
 
@@ -19,57 +19,54 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  user:any = {
-    firstname: "",
-    lastname: "",
-    phone: "",
-    email: "",
-    // country: "",
-    // city: "",
-    // street: "",
-    address: ""
+  user: any = {
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    address: ''
   };
 
   isEdit = false;
 
   ngOnInit() {
 
-    this.httpClient.get("http://127.0.0.1:8080/user/validate").subscribe(
+    this.httpClient.get('http://127.0.0.1:8080/user/validate').subscribe(
       (data: any) => {
         this.user = data.user;
       },
       error => {
-        console.log("Error", error);
+        console.log('Error', error);
       }
     );
 
-    this.httpClient.get("http://127.0.0.1:8080/users").subscribe(
+    this.httpClient.get('http://127.0.0.1:8080/users').subscribe(
       (users: any) => {
         this.users = users;
       },
       error => {
-        console.log("Error", error);
+        console.log('Error', error);
       }
     );
   }
 
   save() {
     this.httpClient
-      .post("http://127.0.0.1:8080/user/update", this.user)
+      .post('http://127.0.0.1:8080/user/update', this.user)
       .subscribe(
         (data: any) => {
           this.user = data.user;
           this.isEdit = false;
         },
         error => {
-          console.log("Error", error);
+          console.log('Error', error);
         }
       );
   }
 
   delete() {
     this.httpClient
-      .delete("http://127.0.0.1:8080/user")
+      .delete('http://127.0.0.1:8080/user')
       .subscribe(
         (data: any) => {
           this.user =  {};
@@ -78,7 +75,7 @@ export class UserProfileComponent implements OnInit {
           this.router.navigateByUrl('/welcome');
         },
         error => {
-          console.log("Error", error);
+          console.log('Error', error);
         }
       );
   }

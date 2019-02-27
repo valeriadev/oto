@@ -18,10 +18,10 @@ import {NewDriveComponent} from '../new-drive/new-drive.component';
 
 export class CompleteRideComponent implements OnInit {
   review = {
-    rating : 5 ,
+    rating : 5,
     notes : '',
-    user : UserProfileComponent,
-    ride : NewDriveComponent,
+    user : {firstname: '', lastname: ''},
+    ride : {origin: '', dest: '', date: '', time: '', driver: ''}
   };
 
   constructor(private httpClient: HttpClient, private router: Router) { }
@@ -32,12 +32,12 @@ export class CompleteRideComponent implements OnInit {
   onFinsihRating() {
     this.httpClient.post('http://127.0.0.1:8080/review/ride', this.review).subscribe(
       data => {
-        console.log("POST Request is successful ", data);
+        console.log('POST Request is successful', data);
         this.router.navigateByUrl('/user/login');
 
       },
       error => {
-        console.log("Error", error);
+        console.log('Error', error);
       }
     );
   }

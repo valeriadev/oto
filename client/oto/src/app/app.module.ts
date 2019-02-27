@@ -17,16 +17,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatListModule} from '@angular/material/list';
 
-
-
-
-/** Http interceptor providers in outside-in order */
-export const httpInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-];
 // Components
 import { NewDriveComponent } from './new-drive/new-drive.component';
 import {StarRatingModule} from 'angular-star-rating';
@@ -46,15 +39,18 @@ import { HomePageComponent } from './home-page/home-page.component';
 // Google Maps
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AgmDirectionModule } from 'agm-direction';
-//services
-import { TokenInterceptor } from "./services/token.service";
+// services
+import { TokenInterceptor } from './services/token.service';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
 import { DestGraphDirective } from './dest-graph.directive';
 
-
+/** Http interceptor providers in outside-in order */
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+];
 
 @NgModule({
   declarations: [

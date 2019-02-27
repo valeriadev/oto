@@ -28,8 +28,16 @@ function search(text) {
   return algoDatabase.search(text);
 }
 
+async function isCarsLoaded() { 
+  const count = await db.Car.count({});
+  return count > 0;
+}
+
+
 
 module.exports = {
     search,
-    loadAllCars
+    loadAllCars,
+    isCarsLoaded
+
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as io from "socket.io-client";
-import { EventEmitter } from "@angular/core";
+import * as io from 'socket.io-client';
+import { EventEmitter } from '@angular/core';
 
 
 @Injectable({
@@ -19,20 +19,20 @@ export class WebsocketService {
 
   public  setUserLoggedIn(fullname: string) {
 
-    this.socket = io("http://localhost:8081/");
+    this.socket = io('http://localhost:8081/');
 
-    this.socket.on("new-user", data => {
+    this.socket.on('new-user', data => {
       this.liveUsers.push(data.fullname);
       this.liveUsersChanged.emit(this.liveUsers);
     });
 
-    this.socket.on("bye-user", data => {
+    this.socket.on('bye-user', data => {
       this.liveUsers.splice(data.fullname);
       this.liveUsersChanged.emit(this.liveUsers);
     });
 
-    this.socket.emit("user-connected", {
-      fullname:fullname
+    this.socket.emit('user-connected', {
+      fullname: fullname
     });
 
     this.fullname = fullname;

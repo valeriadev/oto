@@ -17,25 +17,32 @@ async function run(req, res) {
 
     for (let i = 0; i < allMakes.length; i++) {
       for (let j = 0; j < allMakes[i].models.length; j++) {
-        const modelNameSplitted = allMakes[i].models[j].split(' ');
-          for (let o = 0; o < modelNameSplitted.length; o++) {
-            
-            if(agg[allMakes[i].name+modelNameSplitted[o]] ||  modelNameSplitted[o] == " " || modelNameSplitted[o] == ' ' || !modelNameSplitted[o]){
-                continue;
-            }
-            
-            agg[allMakes[i].name+modelNameSplitted[o]] = true;
-
-            new db.Car({
-                make: allMakes[i].name,
-                model: modelNameSplitted[o]
-              }).save();         
+        const modelNameSplitted = allMakes[i].models[j].split(" ");
+        for (let o = 0; o < modelNameSplitted.length; o++) {
+          if (
+            agg[allMakes[i].name + modelNameSplitted[o]] ||
+            modelNameSplitted[o] == " " ||
+            modelNameSplitted[o] == " " ||
+            !modelNameSplitted[o]
+          ) {
+            continue;
           }
-     
+
+          agg[allMakes[i].name + modelNameSplitted[o]] = true;
+
+          await new db.Car({
+            make: allMakes[i].name,
+            model: modelNameSplitted[o]
+          }).save();
+        }
       }
     }
 
-    res.json(allMakes);
+    if (res) {
+      res.json(allMakes);
+    } else {
+      return true;
+    }
   } catch (e) {
     console.error(e);
     res.status(500).send(e);
