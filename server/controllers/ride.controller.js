@@ -62,10 +62,21 @@ async function ridesByDest(req,res) {
     }
 }
 
+async function ridesByOrigin(req,res) {
+  try{
+      const data = await rideService.mapReduceOrigin();
+
+      res.json(data.results)
+  } catch(e){
+      console.error(e);
+      res.sendStatus(500);
+  }
+}
+
 module.exports = {
   createRide,
   updateRide,
   deleteRide,
   search,
-  ridesByDest
+  ridesByDest,ridesByOrigin
 };

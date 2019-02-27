@@ -91,10 +91,27 @@ async function aggregateByDest() {
   ]);
 }
 
+async function mapReduceOrigin() {
+
+  const o = {};
+
+  o.map = function() {
+    emit(this.origin, 1);
+  };
+
+  o.reduce = function(id, values) {
+    return Array.sum(values);
+  };
+
+  o.verbose = true; // default is false, provide stats on the job
+  return await db.Ride.mapReduce(o);
+}
+
 module.exports = {
   createRide,
   updateRide,
   deleteRide,
   search,
-  aggregateByDest
+  aggregateByDest,
+  mapReduceOrigin
 };

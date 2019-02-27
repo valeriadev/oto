@@ -7,6 +7,7 @@ function defineRoutes(app) {
     app.delete('/ride', authMiddleware.auth, rideController.deleteRide)
     app.get('/ride/search', rideController.search )
     app.get('/rides/stats/dest', rideController.ridesByDest)
+    app.get('/rides/stats/origin', rideController.ridesByOrigin)
 }
 
 module.exports = {

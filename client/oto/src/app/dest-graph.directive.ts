@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from "@angular/core";
+import { Directive, ElementRef, OnInit, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import * as d3 from "d3";
 
@@ -7,20 +7,19 @@ import * as d3 from "d3";
 })
 export class DestGraphDirective implements OnInit {
   stats: any = [];
+
+  @Input() graphType: string;
+
   ngOnInit(): void {
-
-  }
-
-  constructor(private el: ElementRef, private http: HttpClient) {
-    this.http.get("http://localhost:8080/rides/stats/dest").subscribe(
+    this.http.get(`http://localhost:8080/rides/stats/${this.graphType}`).subscribe(
       (stats: any) => {
         this.stats = stats;
 
       let max = -1;
 
       for(let i = 0; i < stats.length; i++){
-        if(stats[i].count > max) {
-          max = stats[i].count;
+        if((stats[i].count || stats[i].value) > max) {
+          max = (stats[i].count || stats[i].value);
         }
       }
 
@@ -53,7 +52,7 @@ export class DestGraphDirective implements OnInit {
       );
       y.domain(
         this.stats.map(function(d) {
-          return d.count;
+          return d.count || d.value;
         })
       );
 
@@ -85,14 +84,17 @@ export class DestGraphDirective implements OnInit {
         })
         .attr("width", 6)
         .attr("y", function(d) {
-          return y(d.count);
+          return y(d.count ||  d.value);
         })
         .attr("height", function(d) {
-          return height - y(d.count);
+          return height - y(d.count|| d.value);
         });      },
       err => {
         alert(err);
       }
-    );
+    );  }
+
+  constructor(private el: ElementRef, private http: HttpClient) {
+
   }
 }
