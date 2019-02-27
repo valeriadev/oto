@@ -18,3 +18,5 @@ app.listen(8080,(error)=>{
     }
 })
 
+require("./services/websocket.service").defineWebSocket();
+
