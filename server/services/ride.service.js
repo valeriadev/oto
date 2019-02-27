@@ -19,7 +19,7 @@ async function createRide({ origin, dest, date, time, driver, id }) {
 async function deleteRide(id) {
   return await db.Ride.findByIdAndDelete(id);
 }
-//
+
 async function updateRide(token, { origin, dest, date, time, driver, id }) {
   return new Promise((resolve, reject) => {
     jwt.verify(token, config.secret, async function(err, decoded) {
@@ -82,9 +82,19 @@ async function search({ origin, dest, date }) {
 
   return ride ? ride : false;
 }
+
+async function aggregateByDest() {
+  return await db.Ride.aggregate([
+    {
+      $group: { _id: "$dest", count: { $sum: 1 } }
+    }
+  ]);
+}
+
 module.exports = {
   createRide,
   updateRide,
   deleteRide,
-  search
+  search,
+  aggregateByDest
 };

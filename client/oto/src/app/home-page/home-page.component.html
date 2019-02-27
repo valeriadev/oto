@@ -1,19 +1,25 @@
 <div>
-    <mat-toolbar>
-    <img alt="Oto Logo" src="/assets/images/otoLogo.png">
-    </mat-toolbar>
+  <mat-toolbar>
+    <img alt="Oto Logo" src="/assets/images/otoLogo.png" />
+  </mat-toolbar>
 </div>
 
-  <mat-tab-group>
-    <mat-tab label="Profile"> <app-user-profile></app-user-profile> </mat-tab>
-    <mat-tab label="Your Schedule"><app-your-schedule></app-your-schedule></mat-tab>
-    <mat-tab label="Upcoming Carpools"><app-upcoming-carpools></app-upcoming-carpools></mat-tab>
-    <mat-tab label="Search Ride"><app-new-drive></app-new-drive></mat-tab>
-    <mat-tab label="Ride Summary"><app-complete-ride></app-complete-ride></mat-tab>
-    <mat-tab label="Suggest New Ride"><app-create-ride></app-create-ride></mat-tab>
-    <mat-tab label="Your Schedule"> Content 2 </mat-tab>
-    <mat-tab label="Upcoming Carpools"> Content 3 </mat-tab>
-  </mat-tab-group>
-
-
-
+<mat-tab-group>
+  <mat-tab label="Profile"> <app-user-profile></app-user-profile> </mat-tab>
+  <mat-tab label="Your Schedule"
+    ><app-your-schedule></app-your-schedule
+  ></mat-tab>
+  <mat-tab label="Upcoming Carpools"
+    ><app-upcoming-carpools></app-upcoming-carpools
+  ></mat-tab>
+  <mat-tab label="Search Ride"><app-new-drive></app-new-drive></mat-tab>
+  <mat-tab label="Ride Summary"
+    ><app-complete-ride></app-complete-ride
+  ></mat-tab>
+  <mat-tab label="Suggest New Ride"
+    ><app-create-ride></app-create-ride
+  ></mat-tab>
+  <mat-tab label="Live users">
+    <app-live-users></app-live-users>
+  </mat-tab>
+</mat-tab-group>
