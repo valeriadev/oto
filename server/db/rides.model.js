@@ -5,15 +5,13 @@ const jwt = require('jsonwebtoken');
 const config = require("../config");
 
 const rideSchema = new mongoose.Schema({
-    origin: 'string',
-    dest: 'string',
-    date: 'string',
+    origin: { type: 'string', lowercase: true },
+    dest:  { type: 'string', lowercase: true },
+    date: 'date',
     time: 'string',
-    driver: {type:mongoose.Types.ObjectId, ref:'User'},
-    id: 'string',
+    driver: {type:mongoose.Types.ObjectId, ref:"User", path:'_id'},
     token: 'string'
 }, { timestamps: true });
-
 
 
 

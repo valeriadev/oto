@@ -10,6 +10,7 @@ require("./routers/rides.router").defineRoutes(app);
 require("./routers/users.router").defineRoutes(app);
 require("./routers/scrapper.router").defineRoutes(app);
 require("./routers/cars.router").defineRoutes(app);
+require("./routers/review.router").defineRoutes(app);
 
 app.listen(8080, error => {
   if (error) {

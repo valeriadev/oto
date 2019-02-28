@@ -20,6 +20,13 @@ async function deleteRide(id) {
   return await db.Ride.findByIdAndDelete(id);
 }
 
+async function getById(id) {
+  const ride = await db.Ride.findById(id);
+  ride.driver = await db.User.findById(ride.driver);
+  return ride;
+}
+
+
 async function updateRide(token, { origin, dest, date, time, driver, id }) {
   return new Promise((resolve, reject) => {
     jwt.verify(token, config.secret, async function(err, decoded) {
@@ -80,6 +87,10 @@ async function search({ origin, dest, date }) {
     ride = await db.Ride.find();
   }
 
+  for (let i = 0; i < ride.length; i++) {
+     ride[i].driver = await db.User.findById(ride[i].driver)
+  }
+
   return ride ? ride : false;
 }
 
@@ -103,7 +114,6 @@ async function mapReduceOrigin() {
     return Array.sum(values);
   };
 
-  o.verbose = true; // default is false, provide stats on the job
   return await db.Ride.mapReduce(o);
 }
 
@@ -113,5 +123,5 @@ module.exports = {
   deleteRide,
   search,
   aggregateByDest,
-  mapReduceOrigin
+  mapReduceOrigin,getById
 };

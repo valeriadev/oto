@@ -2,13 +2,13 @@ const db = require("../db");
 const mongoose = require("mongoose");
 
 
-async function createReview({ rating, notes, driverId, rideId, reviewerId}) {
+async function createReview({ rating, review, driverId, rideId, reviewerId}) {
     return await new db.Review({
         rating,
-        notes,
-        ride:rideId,
+        review,
+        ride: rideId,
         driver: driverId,
-        review:reviewerId
+        reviewer: reviewerId
     }).save();
 }
 
