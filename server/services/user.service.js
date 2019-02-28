@@ -8,6 +8,7 @@ const Regex = require("regex");
 
 async function createUser({ firstname, lastname, email, password, phone, address }) {
     return await new db.User({
+        _id: new mongoose.Types.ObjectId(),
         firstname,
         lastname,
         email,

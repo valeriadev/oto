@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set('debug', true);
 mongoose.connect("mongodb://localhost:27017/oto");
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

@@ -5,11 +5,12 @@ const jwt = require('jsonwebtoken');
 const config = require("../config");
 
 const userSchema = new mongoose.Schema({
+    _id:  {type:mongoose.Types.ObjectId, unique:true},
     firstname: 'string',
     lastname: 'string',
     phone: 'string',
     address: 'string',
-    email: { type: 'string', required: true, unique: true, lowercase: true },
+    email: { type: 'string', required: true, lowercase: true },
     password: { type: 'string', required: true },
     token: 'string'
 }, { timestamps: true });

@@ -5,6 +5,7 @@ import {RegisterUserComponent} from './register-user/register-user.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginComponent} from './login/login.component';
 import {HomePageComponent} from './home-page/home-page.component';
+import { CompleteRideComponent} from './complete-ride/complete-ride.component';
 
 const routes: Routes = [
   { path: 'welcome', component: MainPageComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'user/register',  component: RegisterUserComponent },
   {path: 'user/login', component: LoginComponent},
   {path: 'user/homepage', component: HomePageComponent},
+  {path: 'ride/complete', component: CompleteRideComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

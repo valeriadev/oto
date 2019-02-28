@@ -42,6 +42,16 @@ async function deleteRide(req, res) {
   }
 }
 
+async function getById(req, res) {
+  try {
+    const ride = await rideService.getById(req.query.id);
+    res.status(200).json(ride);
+  } catch (e) {
+    console.error("Failed to get ride: " + e);
+    res.status(500).json({ error: "Can not get ride" });
+  }
+}
+
 async function search(req, res) {
   try {
     const query = req.query;
@@ -78,5 +88,5 @@ module.exports = {
   updateRide,
   deleteRide,
   search,
-  ridesByDest,ridesByOrigin
+  ridesByDest,ridesByOrigin,getById
 };

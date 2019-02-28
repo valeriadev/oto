@@ -1,9 +1,9 @@
-const userController = require("../controllers/user.controller");
+const reviewController = require("../controllers/review.controller");
 const authMiddleware = require("../middlewares/auth.middleware");
 
 function defineRoutes(app) {
-    app.post('/user/ride/createRideSummary', authMiddleware.auth, userController.createUser)
-    app.get('/user/ride/searchRideSummary', userController.search )
+    app.post('/review/ride', authMiddleware.auth, reviewController.createReview)
+    // app.get('/user/ride/searchRideSummary', userController.search )
 }
 
 module.exports = {

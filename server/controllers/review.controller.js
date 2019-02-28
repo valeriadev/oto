@@ -1,18 +1,18 @@
 const reviewService = require("../services/review.service");
-const reviewViewModel = require("../viewmodel/review");
-const querystring = require("querystring");
-const url = require("url");
 
 async function createReview(req, res) {
     const reviewerId  = req.user._id
     try {
-        const userUpdate = await reviewService.createReview({
-            reviewerId,
+        const review = await reviewService.createReview({
+          reviewerId,
             rating: req.body.rating,
+            review:req.body.review,
+            driverId: req.body.driverId,
+            rideId: req.body.rideId
         })
-        res.status(200).json({ user: userViewModel(userUpdate) });
+        res.status(200).json(review);
       } catch (e) {
-        console.error("Failed to update user: " + e);
+        console.error("Failed to create review: " + e);
         res.status(500).json({ error: "Can not create review" });
       }
 

@@ -1,24 +1,27 @@
+<div>
+    <mat-toolbar>
+      <img alt="Oto Logo" src="/assets/images/otoLogo.png" />
+    </mat-toolbar>
+  </div>
+
 <mat-card>
     <mat-toolbar>Complete ride</mat-toolbar>
 
         <div>
+            <mat-label>Driver name: </mat-label>
             <mat-toolbar>{{ review.user.firstname }}{{ review.user.lastname }}</mat-toolbar>
             <span>{{ review.ride.date }}</span>
 
-            <form>
                 <mat-form-field appearance="outline">
                     <mat-label>Rate the driver</mat-label>
-                    <input type="number" matInput name="rating" [(ngModel)]="review.rating" placeholder="Rating" min="1" max="5">
+                    <input type="number"  matInput name="rating" [(ngModel)]="review.rating" placeholder="Rating" min=1 max=5>
                   </mat-form-field>
 
                   <mat-form-field appearance="outline">
                       <mat-label>Leave your comment</mat-label>
-                      <input [(ngModel)]="review.notes" matInput placeholder="">
+                      <input matInput [(ngModel)]="review.notes"  placeholder="">
                       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                  </mat-form-field>
-            </form>
-
-          </div>
+                  </mat-form-field></div>
 
       <button mat-raised-button color='primary' (click)="onFinsihRating()">
           done rating</button>
