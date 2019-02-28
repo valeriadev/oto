@@ -1,0 +1,16 @@
+<mat-card>
+    <p>
+    Car search
+    </p>
+ <br>
+    <form class="example-form" >
+      <mat-form-field class="example-full-width" text >
+        <input matInput placeholder="Enter Manufacturer and Model" [(ngModel)]="this.car.name" name="car.name">
+      </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="onCarSearch()">Search</button>
+  </mat-card>
+<p>{{ car.name }}</p>
+
+<tr *ngFor="let car of cars">
+  <td mat-cell>{{car.name}}</td>

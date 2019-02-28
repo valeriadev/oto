@@ -26,30 +26,34 @@
 </mat-card>
 
 <!-- <div id='graph' style="width:300px;height: 300px;" appDestGraph></div> -->
-Amount of rides per destionation (gropu by):<svg width='600' height='600' appDestGraph graphType="dest"></svg>
-
-Amount of rides per origin (MapReduce):
-<svg width='600' height='600' appDestGraph graphType="origin"></svg>
 
 <mat-card>
+  <p>Search results:</p>
 
-<div>
-  <table mat-table class="mat-elevation-z8">
-    <td class= "td_cell" mat-cell>origin</td>
-    <td class= "td_cell" mat-cell>dest</td>
-    <td class= "td_cell" mat-cell>time</td>
-    <td class= "td_cell" mat-cell>date</td>
-    <td class= "td_cell" mat-cell>driver</td>
-    <tr *ngFor="let ride of rides">
-    <td mat-cell>{{ride.origin}}</td>
-    <td mat-cell>{{ride.dest}}</td>
-    <td mat-cell>{{ride.time}}</td>
-    <td mat-cell>{{ride.date}}</td>
-    <td mat-cell>{{ride.driver}}</td>
-    </tr>
-    </table>
-  </div>
+  <div>
+    <table mat-table class="mat-elevation-z8">
+      <td class= "td_cell" mat-cell>origin</td>
+      <td class= "td_cell" mat-cell>dest</td>
+      <td class= "td_cell" mat-cell>time</td>
+      <td class= "td_cell" mat-cell>date</td>
+      <td class= "td_cell" mat-cell>driver</td>
+      <tr *ngFor="let ride of rides">
+      <td mat-cell>{{ride.origin}}</td>
+      <td mat-cell>{{ride.dest}}</td>
+      <td mat-cell>{{ride.time}}</td>
+      <td mat-cell>{{ride.date}}</td>
+      <td mat-cell>{{ride.driver}}</td>
+      </tr>
+      </table>
+    </div>
+  </mat-card>
+
+
+<mat-card>
+<br>
+<P>Amount of rides per destionation (group by):</P><br><svg width='1000' height='600' appDestGraph graphType="dest"></svg>
+<br>
+<p>Amount of rides per origin (MapReduce):</p><br>
+<svg width='1000' height='600' appDestGraph graphType="origin"></svg>
+<br>
 </mat-card>
-
-
-

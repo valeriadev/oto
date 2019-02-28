@@ -1,6 +1,7 @@
 import { Directive, ElementRef, OnInit, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import * as d3 from "d3";
+import { formatNumber } from '@angular/common';
 
 @Directive({
   selector: "[appDestGraph]"
@@ -17,25 +18,25 @@ export class DestGraphDirective implements OnInit {
 
       let max = -1;
 
-      for(let i = 0; i < stats.length; i++){
-        if((stats[i].count || stats[i].value) > max) {
+      for (let i = 0; i < stats.length; i++){
+        if ((stats[i].count || stats[i].value) > max) {
           max = (stats[i].count || stats[i].value);
         }
       }
 
-        var margin = { top: 40, right: 20, bottom: 30, left: 40 },
+       const margin = { top: 40, right: 20, bottom: 30, left: 40 },
         width = 960 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
-      var x = d3.scaleBand().rangeRound([0, width]);
+      const x = d3.scaleBand().rangeRound([0, width]);
 
-      var y = d3.scaleBand().rangeRound([height, 0]);
+      const y = d3.scaleBand().rangeRound([height, 0]);
 
-      var xAxis = d3.axisBottom(x);
+      const xAxis = d3.axisBottom(x);
 
-      var yAxis = d3.axisLeft(y);
+      const yAxis = d3.axisLeft(y);
 
-      var svg = d3
+      const svg = d3
         .select(this.el.nativeElement)
         .append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -71,7 +72,7 @@ export class DestGraphDirective implements OnInit {
         .attr("y", max)
         // .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Frequency");
+        .text("Count");
 
       svg
         .selectAll(".bar")

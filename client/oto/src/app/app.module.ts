@@ -46,6 +46,7 @@ import { TokenInterceptor } from './services/token.service';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
 import { DestGraphDirective } from './dest-graph.directive';
+import { CarSearchComponent } from './car-search/car-search.component';
 
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
@@ -70,7 +71,8 @@ export const httpInterceptorProviders = [
     MapComponent,
     ProfileEditComponent,
     LiveUsersComponent,
-    DestGraphDirective
+    DestGraphDirective,
+    CarSearchComponent
 
   ],
   imports: [
