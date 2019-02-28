@@ -48,45 +48,33 @@
   </form>
 </mat-card>
 
-<!-- <div id='graph' style="width:300px;height: 300px;" appDestGraph></div> -->
-<<<<<<< HEAD
-=======
-<div>
-  Amount of rides per destionation (gropu by):<svg
-    width="600"
-    height="600"
-    appDestGraph
-    graphType="dest"
-  ></svg>
-</div>
->>>>>>> 8ea147da7a8206d69c5457fdd1e7620215b9d015
 
-<div>
-  Amount of rides per origin (MapReduce):
-  <svg width="600" height="600" appDestGraph graphType="origin"></svg>
-</div>
 <mat-card>
-<<<<<<< HEAD
-  <p>Search results:</p>
 
+  <p>Search results:</p>
   <div>
-    <table mat-table class="mat-elevation-z8">
-      <td class= "td_cell" mat-cell>origin</td>
-      <td class= "td_cell" mat-cell>dest</td>
-      <td class= "td_cell" mat-cell>time</td>
-      <td class= "td_cell" mat-cell>date</td>
-      <td class= "td_cell" mat-cell>driver</td>
-      <tr *ngFor="let ride of rides">
-      <td mat-cell>{{ride.origin}}</td>
-      <td mat-cell>{{ride.dest}}</td>
-      <td mat-cell>{{ride.time}}</td>
-      <td mat-cell>{{ride.date}}</td>
-      <td mat-cell>{{ride.driver}}</td>
-      </tr>
+      <table mat-table class="mat-elevation-z8">
+        <td class="td_cell" mat-cell>Origin</td>
+        <td class="td_cell" mat-cell>Dest</td>
+        <td class="td_cell" mat-cell>Time</td>
+        <td class="td_cell" mat-cell>Date</td>
+        <td class="td_cell" mat-cell>Driver</td>
+        <td class="td_cell" mat-cell>Rating</td>
+
+        <tr *ngFor="let ride of rides">
+          <td mat-cell>{{ ride.origin }}</td>
+          <td mat-cell>{{ ride.dest }}</td>
+          <td mat-cell>{{ ride.time }}</td>
+          <td mat-cell>{{ ride.date }}</td>
+          <td mat-cell>
+            <span *ngIf="ride.driver">{{ ride.driver.firstname }} {{ ride.driver.lastname }}</span>
+          </td>
+          <td mat-cell><input type="button" value="Rate" (click)="rateRide(ride._id)"></td>
+
+        </tr>
       </table>
     </div>
-  </mat-card>
-
+</mat-card>
 
 <mat-card>
 <br>
@@ -95,28 +83,7 @@
 <p>Amount of rides per origin (MapReduce):</p><br>
 <svg width='1000' height='600' appDestGraph graphType="origin"></svg>
 <br>
-=======
-  <div>
-    <table mat-table class="mat-elevation-z8">
-      <td class="td_cell" mat-cell>Origin</td>
-      <td class="td_cell" mat-cell>Dest</td>
-      <td class="td_cell" mat-cell>Time</td>
-      <td class="td_cell" mat-cell>Date</td>
-      <td class="td_cell" mat-cell>Driver</td>
-      <td class="td_cell" mat-cell>Rating</td>
 
-      <tr *ngFor="let ride of rides">
-        <td mat-cell>{{ ride.origin }}</td>
-        <td mat-cell>{{ ride.dest }}</td>
-        <td mat-cell>{{ ride.time }}</td>
-        <td mat-cell>{{ ride.date }}</td>
-        <td mat-cell>
-          <span *ngIf="ride.driver">{{ ride.driver.firstname }} {{ ride.driver.lastname }}</span>
-        </td>
-        <td mat-cell><input type="button" value="Rate" (click)="rateRide(ride._id)"></td>
 
-      </tr>
-    </table>
-  </div>
->>>>>>> 8ea147da7a8206d69c5457fdd1e7620215b9d015
+
 </mat-card>
