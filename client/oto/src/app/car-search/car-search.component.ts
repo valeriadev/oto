@@ -30,6 +30,6 @@ export class CarSearchComponent implements OnInit {
         );
       }
 
-      constructor(private httpClient: HttpClient){}
+      constructor(private httpClient: HttpClient) {}
 
 }

@@ -17,26 +17,14 @@ async function run(req, res) {
 
     for (let i = 0; i < allMakes.length; i++) {
       for (let j = 0; j < allMakes[i].models.length; j++) {
-        const modelNameSplitted = allMakes[i].models[j].split(" ");
-        for (let o = 0; o < modelNameSplitted.length; o++) {
-          if (
-            agg[allMakes[i].name + modelNameSplitted[o]] ||
-            modelNameSplitted[o] == " " ||
-            modelNameSplitted[o] == " " ||
-            !modelNameSplitted[o]
-          ) {
-            continue;
-          }
 
-          agg[allMakes[i].name + modelNameSplitted[o]] = true;
 
           await new db.Car({
             make: allMakes[i].name,
-            model: modelNameSplitted[o]
+            model: allMakes[i].models[j]
           }).save();
         }
       }
-    }
 
     if (res) {
       res.json(allMakes);

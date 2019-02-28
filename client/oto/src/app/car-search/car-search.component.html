@@ -10,7 +10,11 @@
     </form>
     <button mat-raised-button (click)="onCarSearch()">Search</button>
   </mat-card>
-<p>{{ car.name }}</p>
 
+<mat-card>
+  <div>Search results</div>
 <tr *ngFor="let car of cars">
-  <td mat-cell>{{car.name}}</td>
+        <td mat-cell>{{car[1]}}</td>
+        </tr>
+</mat-card>
+
