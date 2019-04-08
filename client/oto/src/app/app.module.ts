@@ -48,10 +48,35 @@ import { LiveUsersComponent } from './live-users/live-users.component';
 import { DestGraphDirective } from './dest-graph.directive';
 import { CarSearchComponent } from './car-search/car-search.component';
 
+//social login
+// import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+// import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
+
+
+
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 ];
+
+// let config = new AuthServiceConfig([
+//   {
+//     id: GoogleLoginProvider.PROVIDER_ID,
+//     provider: new GoogleLoginProvider("Google-OAuth-Client-Id")
+//   },
+//   {
+//     id: FacebookLoginProvider.PROVIDER_ID,
+//     provider: new FacebookLoginProvider("Facebook-App-Id")
+//   },
+//   {
+//     id: LinkedInLoginProvider.PROVIDER_ID,
+//     provider: new LinkedInLoginProvider("LinkedIn-client-Id", false, 'en_US')
+//   }
+// ]);
+
+// export function provideConfig() {
+//   return config;
+//}
 
 @NgModule({
   declarations: [
@@ -115,7 +140,7 @@ export const httpInterceptorProviders = [
     MatStepperModule,
     MatTabsModule,
     MatIconModule,
-
+    // SocialLoginModule,
     StarRatingModule,
     AgmCoreModule.forRoot({
       apiKey: ''
@@ -124,7 +149,12 @@ export const httpInterceptorProviders = [
     AgmDirectionModule
 
   ],
-  providers: [httpInterceptorProviders],
+  providers: [
+    //{
+    // provide: AuthServiceConfig,
+    // useFactory: provideConfig
+  //},
+  httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

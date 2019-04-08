@@ -53,12 +53,13 @@ export class RegisterUserComponent implements OnInit {
   secondFormGroup: FormGroup;
 
   onAddUser() {
-    this.httpClient.post('http://127.0.0.1:8080/user', this.user).subscribe(
+    this.httpClient.post('http://127.0.0.1:8080/user', this.user).toPromise()
+    .then(
       data => {
         console.log('POST Request is successful', data);
         this.router.navigateByUrl('/user/login');
 
-      },
+      }).catch(
       error => {
         console.log('Error', error);
       }
