@@ -91,7 +91,7 @@ export class DestGraphDirective implements OnInit {
           return height - y(d.count|| d.value);
         });      },
       err => {
-        alert(err);
+        // alert(err);
       }
     );  }
 

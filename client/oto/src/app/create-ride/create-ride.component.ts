@@ -29,4 +29,11 @@ export class CreateRideComponent implements OnInit {
   }
   constructor(private httpClient: HttpClient) {}
 
+  formattedAddress = '';
+
+  public handleAddressChange(address: any) {
+   this.formattedAddress = address.formatted_address;
+   this.ride.origin = this.formattedAddress;
+   }
+
 }

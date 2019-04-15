@@ -4,22 +4,12 @@
   </p>
 
   <form class="example-form">
-    <mat-form-field class="example-full-width" text>
-      <input
-        matInput
-        placeholder="From"
-        [(ngModel)]="rideSearch.origin"
-        name="origin"
-      />
+    <mat-form-field class="example-full-width" text >
+      <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="From" (onAddressChange)="handleAddressChange($event)"/>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input
-        matInput
-        placeholder="To"
-        [(ngModel)]="rideSearch.dest"
-        name="dest"
-      />
+      <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="To" (onAddressChange)="handleAddressChange($event)"/>
     </mat-form-field>
 
     <mat-form-field class="date">

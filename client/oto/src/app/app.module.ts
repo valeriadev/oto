@@ -2,7 +2,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
@@ -41,6 +40,7 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AgmDirectionModule } from 'agm-direction';
+import {MapsAPILoader} from '@agm/core';
 // services
 import { TokenInterceptor } from './services/token.service';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
@@ -98,7 +98,6 @@ export const httpInterceptorProviders = [
     LiveUsersComponent,
     DestGraphDirective,
     CarSearchComponent
-
   ],
   imports: [
     MatListModule,
