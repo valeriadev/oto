@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -10,8 +11,9 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { HttpClient } from '@angular/common/http';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { Router } from '@angular/router';
+import { NgZone, } from '@angular/core';
+
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -28,13 +30,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css']
 })
-
 export class RegisterUserComponent implements OnInit {
+
   emailFormControl = new FormControl('', [
     Validators.required
     // Validators.email,
@@ -52,6 +55,7 @@ export class RegisterUserComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
+
   onAddUser() {
     this.httpClient.post('http://127.0.0.1:8080/user', this.user).toPromise()
     .then(
@@ -66,7 +70,9 @@ export class RegisterUserComponent implements OnInit {
     );
   }
 
-  constructor(private httpClient: HttpClient, private _formBuilder: FormBuilder, private router: Router) {}
+  constructor (private httpClient: HttpClient,
+    private _formBuilder: FormBuilder, private router: Router,
+    private ngZone: NgZone) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -77,4 +83,3 @@ export class RegisterUserComponent implements OnInit {
     });
   }
 }
-

@@ -15,7 +15,7 @@ mat-form-field, input{
 .example-full-width {
   width: 100%;
 }
-div {
+.background {
   background-image:url("/assets/images/oto2.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -36,3 +36,4 @@ mat-toolbar {
   opacity: 0.8;
   height: 15%;
 }
+

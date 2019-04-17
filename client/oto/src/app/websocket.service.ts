@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
+import io from 'socket.io-client';
 import { EventEmitter } from '@angular/core';
 
 
@@ -14,7 +14,7 @@ export class WebsocketService {
   public  liveUsers: string[] = [];
   public  userLoggedIn: EventEmitter<string> = new EventEmitter();
   public  liveUsersChanged: EventEmitter<string[]> = new EventEmitter();
-  private  socket;
+  private socket: any;
 
 
   public  setUserLoggedIn(fullname: string) {

@@ -3,7 +3,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { TokenInterceptor } from '../services/token.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -32,25 +31,15 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    if (!TokenInterceptor.token) {
-      this.router.navigateByUrl('/user/login');
-    }
-
     this.httpClient.get('http://127.0.0.1:8080/user/validate').subscribe(
       (data: any) => {
         this.user = data.user;
-      },
-      error => {
-        console.log('Error', error);
       }
     );
 
     this.httpClient.get('http://127.0.0.1:8080/users').subscribe(
       (users: any) => {
         this.users = users;
-      },
-      error => {
-        console.log('Error', error);
       }
     );
   }

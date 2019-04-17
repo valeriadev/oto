@@ -1,3 +1,8 @@
+import * as keys from '../app/keys/keys.json';
+
+
 export const environment = {
-  production: true
+  production: true,
+  googleMapsKey: keys.googleMapsKey
+
 };

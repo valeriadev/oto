@@ -19,6 +19,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatListModule} from '@angular/material/list';
+import { CommonModule } from '@angular/common';
 
 // Components
 import { NewDriveComponent } from './new-drive/new-drive.component';
@@ -41,14 +42,17 @@ import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AgmDirectionModule } from 'agm-direction';
+import {} from '@agm/core/services/google-maps-types';
+
 // services
 import { TokenInterceptor } from './services/token.service';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
 import { DestGraphDirective } from './dest-graph.directive';
 import { CarSearchComponent } from './car-search/car-search.component';
+import { PlaceAutocompleteComponent } from './place-autocomplete/place-autocomplete.component';
 
-//social login
+// social login
 // import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 // import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
 
@@ -76,7 +80,9 @@ export const httpInterceptorProviders = [
 
 // export function provideConfig() {
 //   return config;
-//}
+// }
+
+import * as keys from './keys/keys.json';
 
 @NgModule({
   declarations: [
@@ -97,10 +103,12 @@ export const httpInterceptorProviders = [
     ProfileEditComponent,
     LiveUsersComponent,
     DestGraphDirective,
-    CarSearchComponent
+    CarSearchComponent,
+    PlaceAutocompleteComponent
 
   ],
   imports: [
+    CommonModule,
     MatListModule,
     FormsModule,
     MatToolbarModule,
@@ -143,17 +151,19 @@ export const httpInterceptorProviders = [
     // SocialLoginModule,
     StarRatingModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: keys.googleMapsKey,
+      libraries: ['places'],
+      apiVersion: '3.36'
     }),
     GooglePlaceModule,
     AgmDirectionModule
 
   ],
   providers: [
-    //{
+    // {
     // provide: AuthServiceConfig,
     // useFactory: provideConfig
-  //},
+  // },
   httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

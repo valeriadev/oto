@@ -1,4 +1,4 @@
-<div>
+<div class='background'>
     <mat-toolbar>
     <img alt="Oto Logo" src="/assets/images/otoLogo.png">
     </mat-toolbar>
@@ -32,15 +32,11 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Fill out your address</ng-template>
         <mat-form-field>
-            <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="autocomplete" formControlName="secondCtrl">
-    </mat-form-field>
-        <mat-form-field>
             <input matInput placeholder="Address" name="address" [(ngModel)]='user.address' formControlName="secondCtrl">
           </mat-form-field>
-
+          <app-place-autocomplete></app-place-autocomplete>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
-
       </form>
     </mat-step>
 
@@ -56,10 +52,3 @@
   </mat-horizontal-stepper>
 </mat-card>
 </div>
-
-
-
-
-
-
-

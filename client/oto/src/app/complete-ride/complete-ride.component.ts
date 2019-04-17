@@ -21,8 +21,8 @@ export class CompleteRideComponent implements OnInit {
     ride: { origin: "", dest: "", date: "", time: "", driver: "", _id:'' }
   };
 
-  rideId;
-  rideObject;
+  rideId: any;
+  rideObject: any;
 
   constructor(
     private httpClient: HttpClient,

@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./car-search.component.css']
 })
 export class CarSearchComponent implements OnInit {
-  cars = [];
+  cars: any = [];
   car = {
     name : '',
   };
