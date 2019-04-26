@@ -94,6 +94,7 @@ export class DestGraphDirective /*implements OnInit*/ {
   //       alert(err);
   //     }
   //   );  }
+  ngOnInit(): void { }
 
   constructor(private el: ElementRef, private http: HttpClient) {
 

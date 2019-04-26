@@ -2,7 +2,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
@@ -44,6 +43,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AgmDirectionModule } from 'agm-direction';
 import {} from '@agm/core/services/google-maps-types';
 
+import {MapsAPILoader} from '@agm/core';
 // services
 import { TokenInterceptor } from './services/token.service';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
@@ -105,7 +105,6 @@ import * as keys from './keys/keys.json';
     DestGraphDirective,
     CarSearchComponent,
     PlaceAutocompleteComponent
-
   ],
   imports: [
     CommonModule,
