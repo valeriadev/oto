@@ -18,6 +18,8 @@ export class NewDriveComponent implements OnInit {
   ELEMENT_DATA: Ride[];
 
   rides = [];
+  
+  formattedAddress;
   rideSearch = {
     origin: '',
     dest: '',
@@ -51,6 +53,14 @@ export class NewDriveComponent implements OnInit {
 
   rateRide(id) {
     this.router.navigateByUrl(`/ride/complete?id=${id}`);
+  }
+  public handleOriginAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
+    this.rideSearch.origin = this.formattedAddress;
+  }
+  public handleDestAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
+    this.rideSearch.dest = this.formattedAddress;
   }
 
   constructor(private httpClient: HttpClient, private router: Router) {}

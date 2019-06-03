@@ -63,7 +63,7 @@ export class UserProfileComponent implements OnInit {
       .delete('http://127.0.0.1:8080/user')
       .subscribe(
         (data: any) => {
-          this.user =  {};
+          this.user = {};
           this.isEdit = false;
 
           this.router.navigateByUrl('/welcome');
