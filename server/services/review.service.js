@@ -1,5 +1,4 @@
 const db = require("../db");
-const mongoose = require("mongoose");
 
 
 async function createReview({ rating, review, driverId, rideId, reviewerId}) {

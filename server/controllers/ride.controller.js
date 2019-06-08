@@ -1,18 +1,10 @@
-const validator = require("email-validator");
 const rideService = require("../services/ride.service");
 const rideViewModel = require("../viewmodel/ride");
-const querystring = require("querystring");
-const url = require("url");
 
 async function createRide(req, res) {
-  //const { email, password } = req.body;
-
-  /*if (!(validateEmail(email) && validatePassword(password))) {
-        res.status(400).json({ error: 'Request is not valid' });
-    }*/
 
   try {
-    req.body.driver = req.user._id;
+    req.body.driver = req.user.uid;
     const newRide = await rideService.createRide(req.body);
     res.status(200).json({ ride: rideViewModel(newRide) });
   } catch (e) {
@@ -22,9 +14,8 @@ async function createRide(req, res) {
 }
 
 async function updateRide(req, res) {
-  const token = req.headers["x-oto-token"];
   try {
-    const rideUpdate = await rideService.updateRide(token, req.body);
+    const rideUpdate = await rideService.updateRide(req.user.uid, req.body);
     res.status(200).json({ user: rideViewModel(rideUpdate) });
   } catch (e) {
     console.error("Failed to update ride: " + e);

@@ -19,7 +19,7 @@ export class CreateRideComponent implements OnInit {
     id: ''
   };
   ngOnInit() {
-    
+
   }
   onAddRide() {
     this.dates.forEach(date => this.writeRideToDB(date));
@@ -29,7 +29,7 @@ export class CreateRideComponent implements OnInit {
   onDatePicker(event: MatDatepickerInputEvent<Date>) {
     this.dates.push( event.value);
   }
-  
+
   removeDate(index) {
     this.dates.splice(index, 1);
     // this.dates.delete(index);
@@ -47,7 +47,8 @@ export class CreateRideComponent implements OnInit {
     this.ride.dest = this.formattedAddress;
   }
   public writeRideToDB(date) {
-    this.ride.date = date;
+    this.ride.date = new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())).toUTCString();
+
     console.dir(this.ride);
     this.httpClient.post('http://127.0.0.1:8080/ride/', this.ride).subscribe(
       data => {

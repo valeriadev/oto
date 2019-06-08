@@ -1,7 +1,4 @@
 const db = require("../db");
-const mongoose = require("mongoose");
-const config = require("../config");
-const Regex = require("regex");
 
 async function createRide({ origin, dest, date, time, driver, id }) {
   return await new db.Ride({
@@ -20,13 +17,14 @@ async function deleteRide(id) {
 
 async function getById(id) {
   const ride = await db.Ride.findById(id);
-  ride.driver = await db.User.findById(ride.driver);
-  return ride;
+  const rideForClient = ride.toJSON();
+  const driver = await db.User.findOne({uid:ride.driver});
+  rideForClient.driver = driver.toJSON()
+  return rideForClient;
 }
 
 
-async function updateRide(token, { origin, dest, date, time, driver, id,uid }) {
-  return new Promise(async (resolve, reject) => {
+async function updateRide(uid, { origin, dest, date, time, driver, id }) {
         const objToUpdate = getChangedObj({
           origin,
           dest,
@@ -35,11 +33,9 @@ async function updateRide(token, { origin, dest, date, time, driver, id,uid }) {
           driver,
           id
         });
-        const ride = await db.Ride.findByIdAndUpdate(uid, objToUpdate, {
+        return await db.Ride.findOneAndUpdate({uid}, objToUpdate, {
           new: true
         });
-        resolve(ride);
-  });
 }
 
 function getChangedObj(obj) {
@@ -80,7 +76,7 @@ async function search({ origin, dest, date }) {
   }
 
   for (let i = 0; i < ride.length; i++) {
-     ride[i].driver = await db.User.findById(ride[i].driver)
+     ride[i].driver = await db.User.findOne({uid:ride[i].driver})
   }
 
   return ride ? ride : false;

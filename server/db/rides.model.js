@@ -5,7 +5,7 @@ const rideSchema = new mongoose.Schema({
     dest:  { type: 'string', lowercase: true },
     date: 'date',
     time: 'string',
-    driver: {type:mongoose.Types.ObjectId, ref:"User", path:'_id'},
+    driver:'string',
     token: 'string'
 }, { timestamps: true });
 

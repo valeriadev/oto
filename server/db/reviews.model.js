@@ -5,8 +5,8 @@ const reviewSchema = new mongoose.Schema({
     review: String,
     rating: Number,
     ride: { type: Schema.Types.ObjectId, ref: 'Ride' },
-    reviewer: { type: Schema.Types.ObjectId, ref: 'User' },
-    driver: { type: Schema.Types.ObjectId, ref: 'User' }
+    reviewer: 'string',
+    driver: 'string'
 
 });
 

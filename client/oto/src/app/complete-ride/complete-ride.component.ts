@@ -17,7 +17,7 @@ export class CompleteRideComponent implements OnInit {
   review = {
     rating: 5,
     notes: "",
-    user: { firstname: "", lastname: "", _id:'' },
+    user: { fullname: "", uid:'' },
     ride: { origin: "", dest: "", date: "", time: "", driver: "", _id:'' }
   };
 
@@ -50,7 +50,7 @@ export class CompleteRideComponent implements OnInit {
       .post('http://127.0.0.1:8080/review/ride', {
         rating: this.review.rating,
         review: this.review.notes,
-        driverId: this.review.user._id,
+        driverId: this.review.user.uid,
         rideId: this.review.ride._id
       })
       .subscribe(
