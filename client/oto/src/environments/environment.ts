@@ -5,8 +5,18 @@
 import * as keys from '../app/keys/keys.json';
 export const environment = {
   production: false,
-  googleMapsKey: keys.googleMapsKey
+  googleMapsKey: keys.googleMapsKey,
+  firebase: {
+    apiKey: keys.firebaseConfig.apiKey,
+    authDomain: keys.firebaseConfig.authDomain,
+    databaseURL: keys.firebaseConfig.databaseURL,
+    projectId: keys.firebaseConfig.projectId,
+    storageBucket: keys.firebaseConfig.storageBucket,
+    messagingSenderId: keys.firebaseConfig.messagingSenderId
+  }
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file

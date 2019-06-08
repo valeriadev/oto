@@ -1,8 +1,6 @@
 const db = require("../db");
 const mongoose = require("mongoose");
 const config = require("../config");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 const Regex = require("regex");
 
 async function createRide({ origin, dest, date, time, driver, id }) {
@@ -27,12 +25,8 @@ async function getById(id) {
 }
 
 
-async function updateRide(token, { origin, dest, date, time, driver, id }) {
-  return new Promise((resolve, reject) => {
-    jwt.verify(token, config.secret, async function(err, decoded) {
-      if (err) {
-        reject();
-      } else {
+async function updateRide(token, { origin, dest, date, time, driver, id,uid }) {
+  return new Promise(async (resolve, reject) => {
         const objToUpdate = getChangedObj({
           origin,
           dest,
@@ -41,12 +35,10 @@ async function updateRide(token, { origin, dest, date, time, driver, id }) {
           driver,
           id
         });
-        const ride = await db.Ride.findByIdAndUpdate(decoded.id, objToUpdate, {
+        const ride = await db.Ride.findByIdAndUpdate(uid, objToUpdate, {
           new: true
         });
         resolve(ride);
-      }
-    });
   });
 }
 

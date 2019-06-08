@@ -26,6 +26,7 @@ export class NewDriveComponent implements OnInit {
    // driver: '',
    // id: ''
   };
+  formattedAddress = '';
 
   ngOnInit() {
    /* this.setDest = this.newDest;
@@ -33,6 +34,18 @@ export class NewDriveComponent implements OnInit {
     this.setDate = this.newDate;
     this.setTime = this.newTime;*/
   }
+
+  /*
+  public handleOriginAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
+    this.rideSearch.origin = this.formattedAddress;
+  }
+  public handleDestAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
+    this.rideSearch.dest = this.formattedAddress;
+  }
+  */
+ 
   onSearchRide() {
 // tslint:disable-next-line: max-line-length
     this.httpClient.get(`http://127.0.0.1:8080/ride/search?date=${this.rideSearch.date}&dest=${this.rideSearch.dest}&origin=${this.rideSearch.origin}`).subscribe(
@@ -55,3 +68,9 @@ export class NewDriveComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 }
+
+
+
+
+
+

@@ -6,20 +6,16 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {LoginComponent} from './login/login.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import { CompleteRideComponent} from './complete-ride/complete-ride.component';
+import { AuthGuard } from './core/auth.guard';
+import { UserResolver } from './home-page/user.resolver';
 
-const routes: Routes = [
+export const rootRouterConfig: Routes = [
   { path: 'welcome', component: MainPageComponent },
-  { path: '', component: MainPageComponent },
-  { path: 'user/register',  component: RegisterUserComponent },
-  {path: 'user/login', component: LoginComponent},
-  {path: 'user/homepage', component: HomePageComponent},
+  { path: '', redirectTo: 'user/login', pathMatch: 'full'},
+  { path: 'user/register',  component: RegisterUserComponent, canActivate: [AuthGuard] },
+  {path: 'user/login', component: LoginComponent, canActivate: [AuthGuard] },
+  {path: 'user/homepage', component: HomePageComponent, resolve: { data: UserResolver}},
   {path: 'ride/complete', component: CompleteRideComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

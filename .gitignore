@@ -1,2 +1,5 @@
 node_modules
 .vscode
+
+# System Files
+server/keys/keys.json

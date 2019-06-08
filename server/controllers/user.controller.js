@@ -5,26 +5,35 @@ const querystring = require("querystring");
 const url = require("url");
 
 async function createUser(req, res) {
-  const { email, password } = req.body;
-
-  if (!(validateEmail(email) && validatePassword(password))) {
-    res.status(400).json({ error: "Request is not valid" });
-  }
-
   try {
-    const newUser = await userService.createUser(req.body);
-    res.status(200).json({ user: userViewModel(newUser) });
-  } catch (e) {
-    console.error("Failed to create user: " + e);
-    res.status(500).json({ error: "Can not create user" });
+  console.log(`Body of createUser: ${JSON.stringify(req.body)}`);
+  await userService.extendUser(req.body);
+  res.sendStatus(200);
+  } catch(e){
+    res.status(500).json({
+      err:e.message
+    })
+    console.error(`Failed to extend user. message: ${e.message} \n stack trace: ${e.stack}`)
   }
 }
 
+async function getUser(req, res){
+  try{
+    const user = await userService.getUserByUid(req.user.uid)
+    res.status(200).json(user);
+  } catch(e){
+    res.status(500).json({
+      err:e.message
+    })
+    console.error(`Failed to get user message: ${e.message} \n stack trace: ${e.stack}`)
+  }
+
+}
+
 async function updateUser(req, res) {
-  const token = req.headers["x-oto-token"];
   try {
-    const userUpdate = await userService.updateUser(token, req.body);
-    res.status(200).json({ user: userViewModel(userUpdate) });
+    const userUpdate = await userService.updateUser(req.user.uid, req.body);
+    res.status(200).json({user:userUpdate});
   } catch (e) {
     console.error("Failed to update user: " + e);
     res.status(500).json({ error: "Can not update user" });
@@ -33,38 +42,14 @@ async function updateUser(req, res) {
 
 async function deleteUser(req, res) {
   try {
-    const userDelete = await userService.deleteUser(req.user._id);
-    res.status(200).json({ user: userViewModel(userDelete) });
+    const userDelete = await userService.deleteUser(req.user.uid);
+    res.status(200).json({ user:(userDelete) });
   } catch (e) {
     console.error("Failed to delete user: " + e);
     res.status(500).json({ error: "Can not delete user" });
   }
 }
 
-function validateEmail(email) {
-  return email && validator.validate(email);
-}
-
-function validatePassword(password) {
-  return password && password.length >= 6;
-}
-
-async function validateToken(req, res) {
-  res.status(200).json({ user: userViewModel(req.user) });
-}
-
-async function login(req, res) {
-  try {
-    const userLogin = await userService.login(
-      req.body.email,
-      req.body.password
-    );
-    res.status(200).json({ user: userViewModel(userLogin) });
-  } catch (e) {
-    console.error("Failed to login: " + e);
-    res.status(500).json({ error: "Can not login" });
-  }
-}
 async function search(req, res) {
   try {
     const query = req.query;
@@ -87,10 +72,9 @@ async function getAllUsernames(req, res){
 
 module.exports = {
   createUser,
-  validateToken,
+  getUser,
   updateUser,
   deleteUser,
-  login,
   search,
   getAllUsernames
 };

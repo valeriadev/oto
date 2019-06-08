@@ -1,16 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { TokenInterceptor } from '../services/token.service';
-import { WebsocketService } from '../websocket.service';
+import { AuthService } from '../core/auth.service';
+import { Router, Params} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private httpClient: HttpClient, private router: Router, private websocketService: WebsocketService) { }
+  loginForm: FormGroup;
+  errorMessage: string = '';
+
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder
+    ) {
+      this.createForm();
+    }
+
+  createForm() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required ],
+      password: ['', Validators.required]
+    });
+  }
+  tryFacebookLogin() {
+    this.authService.doFacebookLogin()
+    .then(res => {
+      this.router.navigate(['/user/homepage']);
+    });
+  }
+
+  tryTwitterLogin() {
+    this.authService.doTwitterLogin()
+    .then(res => {
+      this.router.navigate(['/user/homepage']);
+    });
+  }
+
+  tryGoogleLogin() {
+    this.authService.doGoogleLogin()
+    .then(res => {
+      this.router.navigate(['/user/homepage']);
+    });
+  }
+
+  tryLogin(value) {
+    this.authService.doLogin(value)
+    .then(res => {
+      console.log(res);
+      this.errorMessage = '';
+      this.router.navigate(['/user/homepage']);
+    }, err => {
+      console.log(err);
+      this.errorMessage = err.message;
+    });
+  }
+
+  /*
   user = {
     password: '' ,
     email: ''
@@ -37,8 +88,5 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  ngOnInit() {
-
-  }
-
+*/
 }

@@ -3,8 +3,7 @@ function convertUser(user){
         return {}
     } else {
         return {
-            firstname:user.firstname,
-            lastname:user.lastname,
+            fullname:user.fullname,
             phone:user.phone,
             address:user.address,
             email:user.email,

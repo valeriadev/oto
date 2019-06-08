@@ -1,15 +1,28 @@
-<div>
+<div class="background">
     <img alt="Oto Logo" src="/assets/images/otoLogo.png">
-<mat-card>
-    <form class="example-form">
+<mat-card class="card">
+    <form [formGroup]="loginForm" class="example-form">
             <mat-form-field >
-                <input matInput name="email" [(ngModel)]="user.email" placeholder="Email">
+                <input matInput name="email" type="email" formControlName="email" class="form-control" placeholder="Email">
+                <!--<input matInput name="email" [(ngModel)]="user.email" placeholder="Email">-->
               </mat-form-field>
             <mat-form-field class="example-full-width">
-            <input type="password" matInput name="password" [(ngModel)]="user.password" placeholder="Password">
+                <input matInput type="password"  name="password" class="form-control" formControlName="password" placeholder="Password">
+                <label class="error">{{errorMessage}}</label>
+                <!--<input type="password" matInput name="password" [(ngModel)]="user.password" placeholder="Password"> -->
             </mat-form-field>
-          <button (click)="onLogin()" class=loginButton>Login</button>
+            <button type="submit" (click)="tryLogin(loginForm.value)" class="loginButton">Login</button>
+          <!--<button (click)="onLogin()" class=loginButton>Login</button>-->
     </form>
+        <a [routerLink]="" class="fa fa-facebook" (click)="tryFacebookLogin()">
+          <button class="social" >
+
+          </button></a>
+        <a [routerLink]="" class="fa fa-twitter" (click)="tryTwitterLogin()"><button class="social" ></button></a>
+        <a [routerLink]="" class="fa fa-google"  (click)="tryGoogleLogin()"><button class="social"></button></a>
+        <div class="row">
+              <p>No account yet? <a href="user/register">Create an account</a></p>
+          </div>
   </mat-card>
 </div>
 

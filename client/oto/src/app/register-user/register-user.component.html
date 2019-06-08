@@ -1,54 +1,200 @@
 <div class='background'>
-    <mat-toolbar>
+  <mat-toolbar>
     <img alt="Oto Logo" src="/assets/images/otoLogo.png">
-    </mat-toolbar>
-<mat-card>
+  </mat-toolbar>
+
+  <mat-card>
+    <p>Already have an account? <a href="/user/login">Login</a></p>
     <mat-toolbar>Register</mat-toolbar>
-  <mat-horizontal-stepper #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <input matInput name="firstname" [(ngModel)]="user.firstname" placeholder="Firstname" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput name="lastname" [(ngModel)]="user.lastname" placeholder="Lastname" formControlName="firstCtrl" required>
-          </mat-form-field>
-          <mat-form-field>
-              <input type="email" matInput name="email" [(ngModel)]="user.email" placeholder="Email" formControlName="firstCtrl" required>
+    <mat-horizontal-stepper #stepper>
+
+
+      <mat-step [stepControl]="userDetailsForm">
+        <ng-template matStepLabel>User details</ng-template>
+        <div class="col">
+          <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Full Name" formControlName="fullname" required>
+              <mat-error *ngFor="let validation of validation_messages.fullname">
+                <mat-error class="error-message"
+                  *ngIf="userDetailsForm.get('fullname').hasError(validation.type) && (userDetailsForm.get('fullname').dirty || userDetailsForm.get('fullname').touched)">
+                  {{validation.message}}</mat-error>
+              </mat-error>
             </mat-form-field>
-            <mat-form-field>
-                <input type="tel" matInput name="phone" [(ngModel)]="user.phone" placeholder="Phone" formControlName="firstCtrl"  pattern="[0-9]{3}-[0-9]{7}" required>
-              </mat-form-field>
-            <mat-form-field>
-                <input type="password" matInput name="password" [(ngModel)]="user.password" placeholder="Password" formControlName="firstCtrl" required>
-              </mat-form-field>
 
-          <button mat-button matStepperNext>Next</button>
 
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
-            <input matInput placeholder="Address" name="address" [(ngModel)]='user.address' formControlName="secondCtrl">
-          </mat-form-field>
-          <app-place-autocomplete></app-place-autocomplete>
+            <mat-form-field class="full-width">
+              <input matInput [matDatepicker]="picker" placeholder="Your birthday" formControlName="birthday" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngFor="let validation of validation_messages.birthday">
+                <mat-error class="error-message"
+                  *ngIf="userDetailsForm.get('birthday').hasError(validation.type) && (userDetailsForm.get('birthday').dirty || userDetailsForm.get('birthday').touched)">
+                  {{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Gender">
+                <mat-option *ngFor="let gender of genders" [value]="gender">
+                  {{ gender }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngFor="let validation of validation_messages.gender">
+                <mat-error class="error-message"
+                  *ngIf="userDetailsForm.get('gender').hasError(validation.type) && (userDetailsForm.get('gender').dirty || userDetailsForm.get('gender').touched)">
+                  {{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+
+
+            <div formGroupName="country_phone" class="row">
+              <mat-form-field class="full-width col-4">
+                <mat-select formControlName="country" placeholder="Country">
+                  <mat-option *ngFor="let country of countries" [value]="country">
+                    {{ country.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="full-width col-8">
+                <input matInput placeholder="Phone" type="tel" formControlName="phone" required>
+                <mat-hint align="start"><strong>Mobile:</strong>
+                  {{ userDetailsForm.value.country_phone.country.sampleMobilePhone }}</mat-hint>
+                <mat-hint align="end"><strong>Fixed:</strong>
+                  {{ userDetailsForm.value.country_phone.country.sampleFixedPhone }}</mat-hint>
+                <mat-error *ngFor="let validation of validation_messages.phone">
+                  <mat-error class="error-message" class="error-message"
+                    *ngIf="userDetailsForm.get('country_phone').get('phone').hasError(validation.type) && (userDetailsForm.get('country_phone').get('phone').dirty || userDetailsForm.get('country_phone').get('phone').touched)">
+                    {{ validation.message }}
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+              <h4>Upload Photo</h4>
+              <h4>Upload Student Card</h4>
+            </div>
+          </form>
+
+        </div>
+
+
+
+        <button mat-button matStepperNext>Next</button>
+
+      </mat-step>
+      <mat-step >
+        <form >
+          <ng-template matStepLabel>Address</ng-template>
+          <app-place-autocomplete (locationChanged)="onLocationChanged($event)"></app-place-autocomplete>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
-      </form>
-    </mat-step>
+        </form>
+      </mat-step>
 
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
+      <mat-step >
+        <ng-template matStepLabel>Car</ng-template>
+
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Brand" [(ngModel)]="car.brand">
+            <mat-option *ngFor="let car of cars" [value]="car">
+              {{ car }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Model" [(ngModel)]="car.model">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Color" [(ngModel)]="car.color">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="License Plate" [(ngModel)]="car.license">
+        </mat-form-field>
 
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-        <button (click)="onAddUser()">Register</button>
+        <button mat-button matStepperNext>Next</button>
+      </mat-step>
 
-    </mat-step>
-  </mat-horizontal-stepper>
-</mat-card>
+
+      <mat-step>
+        <ng-template matStepLabel>Account details</ng-template>
+        <div class="container">
+          <div class="row">
+
+            <div class="col-2">
+              <div class="user-details-container">
+                <img class="user-image" src="https://randomuser.me/api/portraits/lego/3.jpg" />
+                <span class="user-title">{{userDetailsForm.get('fullname').value}}</span>
+              </div>
+            </div>
+
+            <div class="col">
+              <form [formGroup]="accountDetailsForm" novalidate
+                (ngSubmit)="onSubmitAccountDetails(accountDetailsForm.value)">
+
+                <mat-form-field class="full-width">
+                  <input matInput type="email" placeholder="Email" formControlName="email" required>
+                  <mat-error *ngFor="let validation of account_validation_messages.email">
+                    <mat-error class="error-message"
+                      *ngIf="accountDetailsForm.get('email').hasError(validation.type) && (accountDetailsForm.get('email').dirty || accountDetailsForm.get('email').touched)">
+                      {{validation.message}}</mat-error>
+                  </mat-error>
+                </mat-form-field>
+
+
+                <div formGroupName="matching_passwords">
+                  <mat-form-field class="full-width">
+                    <input matInput type="password" placeholder="Password" formControlName="password" required>
+                    <mat-error *ngFor="let validation of account_validation_messages.password">
+                      <mat-error class="error-message"
+                        *ngIf="accountDetailsForm.get('matching_passwords').get('password').hasError(validation.type) && (accountDetailsForm.get('matching_passwords').get('password').dirty || accountDetailsForm.get('matching_passwords').get('password').touched)">
+                        {{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="full-width">
+                    <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password"
+                      [errorStateMatcher]="parentErrorStateMatcher" required>
+                    <mat-error *ngFor="let validation of account_validation_messages.confirm_password">
+                      <mat-error class="error-message"
+                        *ngIf="(accountDetailsForm.get('matching_passwords').get('confirm_password').hasError(validation.type)|| accountDetailsForm.get('matching_passwords').hasError(validation.type)) && (accountDetailsForm.get('matching_passwords').get('confirm_password').dirty || accountDetailsForm.get('matching_passwords').get('confirm_password').touched)">
+                        {{validation.message}}</mat-error>
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+
+                <mat-checkbox formControlName="terms">
+                  I accept terms and conditions
+                </mat-checkbox>
+
+                <mat-error *ngFor="let validation of account_validation_messages.terms">
+                  <mat-error class="error-message"
+                    *ngIf="accountDetailsForm.get('terms').hasError(validation.type) && (accountDetailsForm.get('terms').dirty || accountDetailsForm.get('terms').touched)">
+                    {{validation.message}}</mat-error>
+                </mat-error>
+                <label class="error">{{errorMessage}}</label>
+                <label class="success">{{successMessage}}</label>
+
+
+                <button class="submit-btn" color="primary" mat-raised-button type="submit"
+                  [disabled]="!accountDetailsForm.valid||!userDetailsForm.valid" (click)="tryRegister()">
+                  Submit
+                </button>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card>
+
 </div>

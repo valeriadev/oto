@@ -16,7 +16,6 @@ mat-form-field, input{
   width: 100%;
 }
 .background {
-  background-image:url("/assets/images/oto2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

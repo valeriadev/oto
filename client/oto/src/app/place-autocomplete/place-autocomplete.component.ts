@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 
@@ -14,6 +14,8 @@ export class PlaceAutocompleteComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
+  @Output() locationChanged = new EventEmitter<any>();
+
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
@@ -65,6 +67,11 @@ export class PlaceAutocompleteComponent implements OnInit {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 12;
+
+        this.locationChanged.emit({
+          lat:this.latitude,
+          long:this.longitude
+        })
       });
     }
   }

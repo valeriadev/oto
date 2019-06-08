@@ -2,7 +2,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import {MatButtonModule, MatExpansionModule, MatDatepickerModule,
@@ -19,6 +18,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatListModule} from '@angular/material/list';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { rootRouterConfig } from './app-routing.module';
+import {MatSelectModule} from '@angular/material/select';
 
 // Components
 import { NewDriveComponent } from './new-drive/new-drive.component';
@@ -40,6 +42,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+
+
 import { AgmDirectionModule } from 'agm-direction';
 import {} from '@agm/core/services/google-maps-types';
 
@@ -56,7 +60,19 @@ import { PlaceAutocompleteComponent } from './place-autocomplete/place-autocompl
 // import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 // import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
 
+// firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { FirebaseAuth } from '@angular/fire';
+import { environment } from '../environments/environment';
 
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+
+
+import { AuthService } from './core/auth.service';
+import { UserResolver } from './home-page/user.resolver';
+import { AuthGuard } from './core/auth.guard';
+import { UserService } from './core/user.service';
 
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
@@ -123,7 +139,6 @@ import * as keys from './keys/keys.json';
     MatFormFieldModule,
     MatInputModule,
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -148,21 +163,32 @@ import * as keys from './keys/keys.json';
     MatTabsModule,
     MatIconModule,
     // SocialLoginModule,
+    GooglePlaceModule,
     StarRatingModule,
     AgmCoreModule.forRoot({
       apiKey: keys.googleMapsKey,
       libraries: ['places'],
       apiVersion: '3.36'
     }),
-    GooglePlaceModule,
-    AgmDirectionModule
-
+    AgmDirectionModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    RouterModule.forRoot(rootRouterConfig, { useHash: false }),
+    AngularFirestoreModule,
+    MatSelectModule,
+    AngularFireAuthModule,
   ],
   providers: [
+    AuthService,
+    UserService,
+    UserResolver,
+    AuthGuard,
     // {
     // provide: AuthServiceConfig,
     // useFactory: provideConfig
   // },
+  AngularFireAuth,
   httpInterceptorProviders],
   bootstrap: [AppComponent]
 })

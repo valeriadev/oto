@@ -1,8 +1,6 @@
 const db = require("../db");
 const mongoose = require("mongoose");
 const config = require("../config");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 const Regex = require("regex");
 
 
@@ -18,37 +16,22 @@ async function createUser({ firstname, lastname, email, password, phone, address
     }).save();
 }
 
-async function validateToken(token) {
-
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, config.secret, async function (err, decoded) {
-            if (err) {
-                reject()
-            } else {
-                const user = await db.User.findById(decoded.id);
-                resolve(user);
-            }
-        })
-    })
-
+async function extendUser(user){
+    return await new db.User(user).save();
 }
 
-async function deleteUser(id) {
-    return await db.User.findByIdAndDelete(id);
+async function getUserByUid(uid) {
+    return await db.User.findOne({uid});
 }
 
-async function updateUser(token, { firstname, lastname, email }) {
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, config.secret, async function (err, decoded) {
-            if (err) {
-                reject()
-            } else {
-                const objToUpdate = getChangedObj({ firstname, lastname, email });
-                const user = await db.User.findByIdAndUpdate(decoded.id, objToUpdate, { new: true });
-                resolve(user);
-            }
-        })
-    })
+async function deleteUser(uid) {
+    return await db.User.findOneAndDelete({uid});
+}
+
+async function updateUser(uid, { fullname, email }) {
+                const objToUpdate = getChangedObj({ fullname, email });
+                const user = await db.User.findOneAndUpdate({uid}, objToUpdate, { new: true });
+                return user;
 }
 
 function getChangedObj(obj) {
@@ -62,13 +45,21 @@ function getChangedObj(obj) {
     return newObj;
 }
 
-async function login(email, password) {
-    const user = await db.User.findOne({ email: email });
-    return (user && bcrypt.compareSync(password, user.password)) ? user : false;
-}
 
-async function search({ firstname, lastname, email }) {
-    const user = await db.User.findOne({ firstname: firstname, email: email, lastname:lastname});
+
+async function search({ fullname, email }) {
+    const query = {};
+
+    if(fullname) {
+        query['fullname'] = fullname
+    }
+
+
+    if(email) {
+        query['email'] = email
+    }
+    
+    const user = await db.User.findOne(query);
   
     return (user) ? user : false;
    
@@ -80,10 +71,10 @@ async function getAllUserNames() {
 
 module.exports = {
     createUser,
-    validateToken,
     updateUser,
+    getUserByUid,
     deleteUser,
-    login, 
     search,
-    getAllUserNames
+    getAllUserNames,
+    extendUser
 }

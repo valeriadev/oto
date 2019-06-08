@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
-const jwt = require('jsonwebtoken');
-const config = require("../config");
 
 const rideSchema = new mongoose.Schema({
     origin: { type: 'string', lowercase: true },

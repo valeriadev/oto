@@ -6,15 +6,13 @@
     class="avatar"
   />
   <mat-slide-toggle [(ngModel)]="isEdit" [checked]="isEdit"
-    >Edit</mat-slide-toggle
-  >
+    >Edit</mat-slide-toggle>
   <div class="profileOrange">
     <div>
       <mat-icon>face</mat-icon>
 
-      <input *ngIf="isEdit" type="text" [(ngModel)]="user.firstname" />
-      <input *ngIf="isEdit" type="text" [(ngModel)]="user.lastname" />
-      <span *ngIf="!isEdit"> {{ user.firstname }} {{ user.lastname }}</span>
+      <input *ngIf="isEdit" type="text" [(ngModel)]="user.fullname" />
+      <span *ngIf="!isEdit"> {{ user.fullname }}</span>
     </div>
     <div>
       <mat-icon>call</mat-icon>
@@ -29,8 +27,8 @@
   </div>
   <div>
     <mat-icon>home</mat-icon>
-    <input *ngIf="isEdit" type="text" [(ngModel)]="user.address" />
-    <span *ngIf="!isEdit"> {{ user.address }}</span>
+    <!-- <input *ngIf="isEdit" type="text" [(ngModel)]="user.address" /> -->
+    <span *ngIf="!isEdit"> {{ user.lat }} / {{ user.long }}</span>
   </div>
   <div *ngIf="isEdit">
     <button (click)="save()">Update Profile</button>

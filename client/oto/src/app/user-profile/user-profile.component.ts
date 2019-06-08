@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import {AuthService} from '../core/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,8 +21,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   user: any = {
-    firstname: '',
-    lastname: '',
+    fullname: '',
     phone: '',
     email: '',
     address: ''
@@ -29,11 +29,10 @@ export class UserProfileComponent implements OnInit {
 
   isEdit = false;
 
-  ngOnInit() {
-
+  async ngOnInit() {
     this.httpClient.get('http://127.0.0.1:8080/user/validate').subscribe(
       (data: any) => {
-        this.user = data.user;
+        this.user = data;
       }
     );
 
