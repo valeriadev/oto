@@ -24,7 +24,9 @@
   background: rgb(252, 184, 58);
   color: #ffffff;
 }
-
+button {
+  background: orange;
+}
 .example-full-width {
   margin-top: 10px;
   width: 100%;
@@ -59,4 +61,17 @@ mat-form-field{
 h6{
   text-align: center;
   margin: auto;
+}
+mat-card{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size: 1.5em;
+  line-height: 2;
+  text-align: center;
+
+}
+mat-table{
+  font-size: 1em;
 }

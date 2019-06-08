@@ -4,7 +4,7 @@
   </mat-toolbar>
 </div>
 
-<mat-tab-group>
+<mat-tab-group *ngIf="!isLoading">
   <mat-tab label="Profile"> <app-user-profile></app-user-profile> </mat-tab>
   <mat-tab label="Your Schedule"
     ><app-your-schedule></app-your-schedule
