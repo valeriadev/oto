@@ -41,4 +41,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-src/app/keys/keys.json
+src/app/keys/*
