@@ -1,19 +1,21 @@
 <mat-card>
   <p>
-    Enter some details
+    From to where?
   </p>
   <form class="example-form">
-<!--
- f
-    <mat-form-field class="example-full-width" text >
-      <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="From" (onAddressChange)="handleOriginAddressChange($event)"/>
-    </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="To" (onAddressChange)="handleDestAddressChange($event)"/>
-    </mat-form-field>
--->
-    <mat-form-field class="date">
+      <mat-form-field class="example-full-width">
+          <mat-label>From</mat-label>
+          <input matInput placeholder="From" [(ngModel)]="rideSearch.origin" name="origin">
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+            <mat-label>To</mat-label>
+            <input matInput placeholder="To where?" [(ngModel)]="rideSearch.dest" name="dest">
+          </mat-form-field>
+
+    <!-- <mat-form-field class="date">
       <input
         matInput
         [matDatepicker]="picker"
@@ -34,7 +36,7 @@
         [(ngModel)]="rideSearch.time"
         name="time"
       />
-    </mat-form-field>
+    </mat-form-field> -->
     <button mat-raised-button (click)="onSearchRide()">Look for a ride</button>
   </form>
 </mat-card>
@@ -58,7 +60,7 @@
           <td mat-cell>{{ ride.time }}</td>
           <td mat-cell>{{ ride.date }}</td>
           <td mat-cell>
-            <span *ngIf="ride.driver">{{ ride.driver.firstname }} {{ ride.driver.lastname }}</span>
+            <span *ngIf="ride.driver">{{ ride.driver.fullname }}</span>
           </td>
           <td mat-cell><input type="button" value="Rate" (click)="rateRide(ride._id)"></td>
 

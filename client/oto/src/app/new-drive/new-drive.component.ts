@@ -49,9 +49,9 @@ export class NewDriveComponent implements OnInit {
 
   onSearchRide() {
 // tslint:disable-next-line: max-line-length
-const uiDate = new Date(this.rideSearch.date);
-    const dateOnly = new Date(uiDate.getFullYear(),uiDate.getMonth(), uiDate.getDate());
-    this.httpClient.get(`http://127.0.0.1:8080/ride/search?date=${dateOnly.toUTCString()}&dest=${this.rideSearch.dest}&origin=${this.rideSearch.origin}`).subscribe(
+// const uiDate = new Date(this.rideSearch.date);
+    // const dateOnly = new Date(uiDate.getFullYear(),uiDate.getMonth(), uiDate.getDate());
+    this.httpClient.get(`http://127.0.0.1:8080/ride/search?dest=${this.rideSearch.dest}&origin=${this.rideSearch.origin}`).subscribe(
       (data: any) => {
         console.log('Search Request is successful ', data);
         this.rides = data;

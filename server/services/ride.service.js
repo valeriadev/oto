@@ -1,7 +1,9 @@
 const db = require("../db");
+const algo = require("./algo.service");
 
 async function createRide({ origin, dest, date, time, driver, id }) {
-  return await new db.Ride({
+
+  const ride = await new db.Ride({
     origin,
     dest,
     date,
@@ -9,6 +11,15 @@ async function createRide({ origin, dest, date, time, driver, id }) {
     driver,
     id
   }).save();
+
+  await algo.sendNewRide({
+    driverID:driver,
+    driveID:ride._id,
+    startLocation:origin,
+    endLocation:dest
+  })
+
+  return ride;
 }
 
 async function deleteRide(id) {
@@ -53,33 +64,35 @@ async function search({ origin, dest, date }) {
   //const to = new Regex("/^"+dest+"/");
   //const newDate = new Regex("/^"+date+"/");
 
-  orParams = [];
+  // orParams = [];
 
-  if (origin) {
-    orParams.push({ origin: origin });
+  // if (origin) {
+  //   orParams.push({ origin: origin });
+  // }
+
+  // if (dest) {
+  //   orParams.push({ dest: dest });
+  // }
+
+  const response = [];
+
+  const ridesString = await algo.findRide({
+    startLocation:origin,
+    endLocation:dest
+  })
+
+  const rides = JSON.parse(ridesString);
+
+  for (let i = 0; i < rides.length; i++) {
+     let ride = await db.Ride.findById(rides[i].value.driveID);
+     const driver = await db.User.findOne({uid:ride.driver});
+     ride = ride.toObject();
+     ride.driver = driver.toObject();
+
+     response.push(ride);
   }
 
-  if (dest) {
-    orParams.push({ dest: dest });
-  }
-
-  if (date) {
-    orParams.push({ date: date });
-  }
-
-  let ride;
-
-  if (orParams.length > 0) {
-    ride = await db.Ride.find({ $or: orParams });
-  } else {
-    ride = await db.Ride.find();
-  }
-
-  for (let i = 0; i < ride.length; i++) {
-     ride[i].driver = await db.User.findOne({uid:ride[i].driver})
-  }
-
-  return ride ? ride : false;
+  return response ? response : false;
 }
 
 async function aggregateByDest() {
