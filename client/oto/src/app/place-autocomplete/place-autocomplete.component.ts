@@ -14,6 +14,7 @@ export class PlaceAutocompleteComponent implements OnInit {
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
+  public address = '';
   @Output() locationChanged = new EventEmitter<any>();
 
 
@@ -30,7 +31,6 @@ export class PlaceAutocompleteComponent implements OnInit {
     this.zoom = 4;
     this.latitude = 39.8282;
     this.longitude = -98.5795;
-
     // create search FormControl
     this.searchControl = new FormControl();
 
@@ -42,6 +42,7 @@ export class PlaceAutocompleteComponent implements OnInit {
       const autocomplete = new window['google'].maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ['address']
       });
+      this.address = autocomplete;
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           // get the place result
@@ -69,9 +70,10 @@ export class PlaceAutocompleteComponent implements OnInit {
         this.zoom = 12;
 
         this.locationChanged.emit({
-          lat:this.latitude,
-          long:this.longitude
-        })
+          lat: this.latitude,
+          long: this.longitude,
+          address: this.address
+        });
       });
     }
   }

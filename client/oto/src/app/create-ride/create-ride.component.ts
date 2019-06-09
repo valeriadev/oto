@@ -18,6 +18,7 @@ export class CreateRideComponent implements OnInit {
     driver: '',
     id: ''
   };
+  formattedAddress = '';
   ngOnInit() {
 
   }
@@ -36,7 +37,7 @@ export class CreateRideComponent implements OnInit {
   }
   constructor(private httpClient: HttpClient) { }
 
-  formattedAddress = '';
+
 
   public handleOriginAddressChange(address: any) {
     this.formattedAddress = address.formatted_address;
@@ -47,7 +48,7 @@ export class CreateRideComponent implements OnInit {
     this.ride.dest = this.formattedAddress;
   }
   public writeRideToDB(date) {
-    this.ride.date = new Date(Date.UTC(date.getFullYear(),date.getMonth(),date.getDate())).toUTCString();
+    this.ride.date = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toUTCString();
 
     console.dir(this.ride);
     this.httpClient.post('http://127.0.0.1:8080/ride/', this.ride).subscribe(
@@ -58,6 +59,6 @@ export class CreateRideComponent implements OnInit {
         console.log('Error', error);
       }
     );
-  };
+  }
 
 }

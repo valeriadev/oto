@@ -27,7 +27,6 @@ async function getUser(req, res){
     })
     console.error(`Failed to get user message: ${e.message} \n stack trace: ${e.stack}`)
   }
-
 }
 
 async function updateUser(req, res) {

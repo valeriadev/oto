@@ -1,7 +1,7 @@
 <div class='container'>
     <div class="form-group">
 
-      <input matInput placeholder="search for location (format: Elie Wiesel Street, Rishon LeTsiyon, Israel)" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" formControlName="user address">
+      <input matInput placeholder="search for location (format: Elie Wiesel Street, Rishon LeTsiyon, Israel)" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" formControlName="userAddress">
     </div>
     <agm-map [latitude]='latitude' [longitude]='longitude' [scrollwheel]='false' [zoom]='zoom'>
       <agm-marker [latitude]='latitude' [longitude]='longitude'></agm-marker>

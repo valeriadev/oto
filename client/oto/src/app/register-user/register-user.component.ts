@@ -1,30 +1,30 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import {
   FormControl,
   Validators,
   FormBuilder,
   FormGroup
-} from "@angular/forms";
-import { AuthService } from "../core/auth.service";
-import { Router, Params } from "@angular/router";
+} from '@angular/forms';
+import { AuthService } from '../core/auth.service';
+import { Router, Params } from '@angular/router';
 import {
   Country,
   UsernameValidator,
   PasswordValidator,
   ParentErrorStateMatcher,
   PhoneValidator
-} from "../validators";
-import { MatSelectModule } from "@angular/material/select";
-import { HttpClient } from "@angular/common/http";
+} from '../validators';
+import { MatSelectModule } from '@angular/material/select';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: "app-register-user",
-  templateUrl: "./register-user.component.html",
-  styleUrls: ["./register-user.component.css"]
+  selector: 'app-register-user',
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent {
-  errorMessage: string = "";
-  successMessage: string = "";
+  errorMessage = '';
+  successMessage = '';
   userDetailsForm: FormGroup;
   accountDetailsForm: FormGroup;
   carForm: FormGroup;
@@ -34,160 +34,160 @@ export class RegisterUserComponent {
   parentErrorStateMatcher = new ParentErrorStateMatcher();
 
   cars = [
-    "Abarth",
-    "Acura",
-    "Arash",
-    "Alfa Romeo",
-    "Ariel Motor Company",
-    "Ascari",
-    "Aston Martin",
-    "Audi",
-    "Bentley",
-    "Bowler",
-    "BMW",
-    "Briggs Automotive Company",
-    "Bristol Cars",
-    "Brooke Cars",
-    "Bugatti",
-    "Buick",
-    "Cadillac",
-    "Caparo Vehicle Technologies",
-    "Caterham",
-    "Chery",
-    "Chevrolet",
-    "Chevron Cars",
-    "Chrysler",
-    "Citroen",
-    "Corvette",
-    "Dacia",
-    "Daihatsu",
-    "Datsun",
-    "Dodge",
-    "Donkervoort",
-    "Ferrari",
-    "Fiat",
-    "Fisker",
-    "Ford",
-    "FPV",
-    "Ginetta",
-    "GMC",
-    "Hennessey",
-    "Holden",
-    "Honda",
-    "Hyundai",
-    "Infiniti",
-    "Isuzu",
-    "Jaguar",
-    "Jeep",
-    "Joss",
-    "Kamaz",
-    "Kia",
-    "Koenigsegg",
-    "KTM",
-    "Lamborghini",
-    "Lancia",
-    "Land Rover",
-    "Lexus",
-    "Lister",
-    "Lincoln Motor Company",
-    "Lotus",
-    "Mahindra & Mahindra",
-    "MarutiSuzuki",
-    "Maserati",
-    "Mastretta",
-    "Mazda",
-    "McLaren Automotive",
-    "Mercedes-Benz",
-    "MG Motor",
-    "Mini",
-    "Mitsubishi",
-    "Morgan",
-    "Nissan",
-    "Noble",
-    "Opel",
-    "Pagani",
-    "Perodua",
-    "Peugeot",
-    "Porsche",
-    "Proton",
-    "Radical Sportscars",
-    "Ram",
-    "Renault",
-    "Roewe",
-    "Rolls-Royce Motor Cars",
-    "RUF",
-    "Saleen",
-    "Saab",
-    "Scion",
-    "Seat",
-    "Skoda",
-    "Smart Automobile",
-    "SRT",
-    "SsangYong Motor",
-    "Subaru",
-    "Superformance",
-    "Suzuki",
-    "Tata",
-    "Tesla",
-    "Toyota",
-    "TVR",
-    "Ultima Sports",
-    "Vauxhall Motors",
-    "Venturi",
-    "Volkswagen",
-    "Volvo",
-    "Westfield",
-    "Wiesmann",
-    "Zenvo",
-    "Other"
+    'Abarth',
+    'Acura',
+    'Arash',
+    'Alfa Romeo',
+    'Ariel Motor Company',
+    'Ascari',
+    'Aston Martin',
+    'Audi',
+    'Bentley',
+    'Bowler',
+    'BMW',
+    'Briggs Automotive Company',
+    'Bristol Cars',
+    'Brooke Cars',
+    'Bugatti',
+    'Buick',
+    'Cadillac',
+    'Caparo Vehicle Technologies',
+    'Caterham',
+    'Chery',
+    'Chevrolet',
+    'Chevron Cars',
+    'Chrysler',
+    'Citroen',
+    'Corvette',
+    'Dacia',
+    'Daihatsu',
+    'Datsun',
+    'Dodge',
+    'Donkervoort',
+    'Ferrari',
+    'Fiat',
+    'Fisker',
+    'Ford',
+    'FPV',
+    'Ginetta',
+    'GMC',
+    'Hennessey',
+    'Holden',
+    'Honda',
+    'Hyundai',
+    'Infiniti',
+    'Isuzu',
+    'Jaguar',
+    'Jeep',
+    'Joss',
+    'Kamaz',
+    'Kia',
+    'Koenigsegg',
+    'KTM',
+    'Lamborghini',
+    'Lancia',
+    'Land Rover',
+    'Lexus',
+    'Lister',
+    'Lincoln Motor Company',
+    'Lotus',
+    'Mahindra & Mahindra',
+    'MarutiSuzuki',
+    'Maserati',
+    'Mastretta',
+    'Mazda',
+    'McLaren Automotive',
+    'Mercedes-Benz',
+    'MG Motor',
+    'Mini',
+    'Mitsubishi',
+    'Morgan',
+    'Nissan',
+    'Noble',
+    'Opel',
+    'Pagani',
+    'Perodua',
+    'Peugeot',
+    'Porsche',
+    'Proton',
+    'Radical Sportscars',
+    'Ram',
+    'Renault',
+    'Roewe',
+    'Rolls-Royce Motor Cars',
+    'RUF',
+    'Saleen',
+    'Saab',
+    'Scion',
+    'Seat',
+    'Skoda',
+    'Smart Automobile',
+    'SRT',
+    'SsangYong Motor',
+    'Subaru',
+    'Superformance',
+    'Suzuki',
+    'Tata',
+    'Tesla',
+    'Toyota',
+    'TVR',
+    'Ultima Sports',
+    'Vauxhall Motors',
+    'Venturi',
+    'Volkswagen',
+    'Volvo',
+    'Westfield',
+    'Wiesmann',
+    'Zenvo',
+    'Other'
   ];
 
-  genders = ["Male", "Female", "Other"];
+  genders = ['Male', 'Female', 'Other'];
 
-  countries = [new Country("IL", "Israel"), new Country("US", "United States")];
+  countries = [new Country('IL', 'Israel'), new Country('US', 'United States')];
 
   validation_messages = {
-    fullname: [{ type: "required", message: "Full name is required" }],
+    fullname: [{ type: 'required', message: 'Full name is required' }],
     bio: [
       {
-        type: "maxlength",
-        message: "Bio cannot be more than 256 characters long"
+        type: 'maxlength',
+        message: 'Bio cannot be more than 256 characters long'
       }
     ],
-    gender: [{ type: "required", message: "Please select your gender" }],
-    birthday: [{ type: "required", message: "Please insert your birthday" }],
+    gender: [{ type: 'required', message: 'Please select your gender' }],
+    birthday: [{ type: 'required', message: 'Please insert your birthday' }],
     phone: [
-      { type: "required", message: "Phone is required" },
+      { type: 'required', message: 'Phone is required' },
       {
-        type: "validCountryPhone",
-        message: "Phone incorrect for the country selected"
+        type: 'validCountryPhone',
+        message: 'Phone incorrect for the country selected'
       }
     ]
   };
 
   account_validation_messages = {
     email: [
-      { type: "required", message: "Email is required" },
-      { type: "pattern", message: "Enter a valid email" }
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Enter a valid email' }
     ],
     confirm_password: [
-      { type: "required", message: "Confirm password is required" },
-      { type: "areEqual", message: "Password mismatch" }
+      { type: 'required', message: 'Confirm password is required' },
+      { type: 'areEqual', message: 'Password mismatch' }
     ],
     password: [
-      { type: "required", message: "Password is required" },
+      { type: 'required', message: 'Password is required' },
       {
-        type: "minlength",
-        message: "Password must be at least 5 characters long"
+        type: 'minlength',
+        message: 'Password must be at least 5 characters long'
       },
       {
-        type: "pattern",
+        type: 'pattern',
         message:
-          "Your password must contain at least one uppercase, one lowercase, and one number"
+          'Your password must contain at least one uppercase, one lowercase, and one number'
       }
     ],
     terms: [
-      { type: "pattern", message: "You must accept terms and conditions" }
+      { type: 'pattern', message: 'You must accept terms and conditions' }
     ]
   };
 
@@ -195,8 +195,15 @@ export class RegisterUserComponent {
 
   ownCar = false;
 
-  car={};
+  car = {};
 
+   /*car = {
+    brand: '',
+    model: '',
+    color: '',
+    license: ''
+    };
+    */
   isLinear = false;
 
   constructor(
@@ -215,7 +222,7 @@ export class RegisterUserComponent {
   facebookLogin() {
     this.authService.doFacebookAuth().then(
       res => {
-        this.router.navigate(["/user/homepage"]);
+        this.router.navigate(['/user/homepage']);
       },
       err => console.log(err)
     );
@@ -224,7 +231,7 @@ export class RegisterUserComponent {
   twitterLogin() {
     this.authService.doTwitterAuth().then(
       res => {
-        this.router.navigate(["/user/homepage"]);
+        this.router.navigate(['/user/homepage']);
       },
       err => console.log(err)
     );
@@ -233,7 +240,7 @@ export class RegisterUserComponent {
   googleLogin() {
     this.authService.doGoogleAuth().then(
       res => {
-        this.router.navigate(["/user/homepage"]);
+        this.router.navigate(['/user/homepage']);
       },
       err => console.log(err)
     );
@@ -252,7 +259,7 @@ export class RegisterUserComponent {
   onFirebaseFailedRegister(err: any) {
     console.log(err);
     this.errorMessage = err.message;
-    this.successMessage = "";
+    this.successMessage = '';
   }
 
   onFirebaseSuccessfulRegister(res: firebase.auth.UserCredential) {
@@ -269,20 +276,20 @@ export class RegisterUserComponent {
       ...this.country_phone_group.value
     };
     this.http
-      .post("http://localhost:8080/user", user)
+      .post('http://localhost:8080/user', user)
       .subscribe(
         data => {
-          console.log("Exten user details", data);
+          console.log('Exten user details', data);
           this.router.navigateByUrl('/welcome');
 
         },
         error => {
-          console.log("Error", error);
+          console.log('Error', error);
         }
       );
     console.log(res);
-    this.errorMessage = "";
-    this.successMessage = "Your account has been created";
+    this.errorMessage = '';
+    this.successMessage = 'Your account has been created';
   }
 
   onLocationChanged(payload: any) {
@@ -294,16 +301,16 @@ export class RegisterUserComponent {
     this.matching_passwords_group = new FormGroup(
       {
         password: new FormControl(
-          "",
+          '',
           Validators.compose([
             Validators.minLength(5),
             Validators.required,
             Validators.pattern(
-              "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$"
+              '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'
             )
           ])
         ),
-        confirm_password: new FormControl("", Validators.required)
+        confirm_password: new FormControl('', Validators.required)
       },
       (formGroup: FormGroup) => {
         return PasswordValidator.areEqual(formGroup);
@@ -312,7 +319,7 @@ export class RegisterUserComponent {
 
     const country = new FormControl(this.countries[0], Validators.required);
 
-    const phone = new FormControl("", {
+    const phone = new FormControl('', {
       validators: Validators.compose([
         Validators.required,
         PhoneValidator.validCountryPhone(country)
@@ -325,8 +332,8 @@ export class RegisterUserComponent {
     });
 
     this.userDetailsForm = this.fb.group({
-      fullname: ["", Validators.required],
-      birthday: ["", Validators.required],
+      fullname: ['', Validators.required],
+      birthday: ['', Validators.required],
       gender: new FormControl(this.genders[0], Validators.required),
       country_phone: this.country_phone_group
     });
@@ -334,14 +341,14 @@ export class RegisterUserComponent {
     // user links form validations
     this.accountDetailsForm = this.fb.group({
       email: new FormControl(
-        "",
+        '',
         Validators.compose([
           Validators.required,
-          Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ])
       ),
       matching_passwords: this.matching_passwords_group,
-      terms: new FormControl(false, Validators.pattern("true"))
+      terms: new FormControl(false, Validators.pattern('true'))
     });
   }
 

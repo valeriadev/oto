@@ -177,15 +177,16 @@
                     *ngIf="accountDetailsForm.get('terms').hasError(validation.type) && (accountDetailsForm.get('terms').dirty || accountDetailsForm.get('terms').touched)">
                     {{validation.message}}</mat-error>
                 </mat-error>
-                <label class="error">{{errorMessage}}</label>
-                <label class="success">{{successMessage}}</label>
-
 
                 <button class="submit-btn" color="primary" mat-raised-button type="submit"
                   [disabled]="!accountDetailsForm.valid||!userDetailsForm.valid" (click)="tryRegister()">
                   Submit
                 </button>
-
+                <div>
+                    <label class="error">{{errorMessage}}</label>
+                    <label class="success">{{successMessage}}</label>
+                    <p>Already have an account? <a href="/user/login">Login</a></p>
+                </div>
               </form>
 
             </div>

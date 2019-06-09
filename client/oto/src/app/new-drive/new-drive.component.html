@@ -15,6 +15,19 @@
             <input matInput placeholder="To where?" [(ngModel)]="rideSearch.dest" name="dest">
           </mat-form-field>
 
+          <mat-form-field class="date">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                placeholder="Choose a date"
+                [(ngModel)]="rideSearch.date"
+                name="date"
+              />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+
     <!-- <mat-form-field class="date">
       <input
         matInput
@@ -41,7 +54,7 @@
   </form>
 </mat-card>
 
-
+<!--
 <mat-card>
 
   <p>Search results:</p>
@@ -68,15 +81,27 @@
       </table>
     </div>
 </mat-card>
+-->
 
-<mat-card>
-<br>
-<P>Amount of rides per destionation (group by):</P><br><svg width='1000' height='600' appDestGraph graphType="dest"></svg>
-<br>
-<p>Amount of rides per origin (MapReduce):</p><br>
-<svg width='1000' height='600' appDestGraph graphType="origin"></svg>
-<br>
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <mat-card *ngFor="let ride of rides" class="card-picture">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p><b>Origin:</b> {{ ride.origin }}</p>
+      <p><b>Destination:</b> {{ ride.dest }}</p>
+      <p> <mat-icon fxFlex="10%">calendar_today</mat-icon><b>Date:</b> {{ride.date}} </p>
+      <p> <mat-icon fxFlex="10%">access_time</mat-icon> <b>Time:</b>  {{ride.time}}</p>
+      <p> <mat-icon fxFlex="10%">face</mat-icon> <span *ngIf="ride.driver"><b>Driver Name:</b> {{ ride.driver.fullname }}</span></p>
 
 
-
-</mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button value="Rate" (click)="rateRide(ride._id)">Rate</button>
+        <button mat-button>Join the ride</button>
+      </mat-card-actions>
+  </mat-card>
+</div>
