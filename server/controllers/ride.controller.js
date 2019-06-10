@@ -16,10 +16,21 @@ async function createRide(req, res) {
 async function updateRide(req, res) {
   try {
     const rideUpdate = await rideService.updateRide(req.user.uid, req.body);
-    res.status(200).json({ user: rideViewModel(rideUpdate) });
+    res.status(200).json({ ride: rideViewModel(rideUpdate) });
   } catch (e) {
     console.error("Failed to update ride: " + e);
     res.status(500).json({ error: "Can not update ride" });
+  }
+}
+
+async function joinRide(req, res){
+  try {
+    passengerId=req.user.uid;
+    const rideJoin = await rideService.joinRide(passengerId, req.body);
+    res.status(200).json({ ride: rideViewModel(rideJoin) });
+  } catch (e) {
+    console.error("Failed to join ride: " + e);
+    res.status(500).json({ error: "Can not join ride" });
   }
 }
 
@@ -79,5 +90,6 @@ module.exports = {
   updateRide,
   deleteRide,
   search,
-  ridesByDest,ridesByOrigin,getById
+  ridesByDest,ridesByOrigin,getById,
+  joinRide
 };

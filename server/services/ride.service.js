@@ -1,23 +1,31 @@
 const db = require("../db");
 const algo = require("./algo.service");
 
-async function createRide({ origin, dest, date, time, driver, id }) {
-
+async function createRide({
+  origin,
+  dest,
+  date,
+  time,
+  driver,
+  id,
+  numberOfSeatsAvailableInTheVehicle
+}) {
   const ride = await new db.Ride({
     origin,
     dest,
     date,
     time,
     driver,
-    id
+    id,
+    numberOfSeatsAvailableInTheVehicle
   }).save();
 
   await algo.sendNewRide({
-    driverID:driver,
-    driveID:ride._id,
-    startLocation:origin,
-    endLocation:dest
-  })
+    driverID: driver,
+    driveID: ride._id,
+    startLocation: origin,
+    endLocation: dest
+  });
 
   return ride;
 }
@@ -29,24 +37,34 @@ async function deleteRide(id) {
 async function getById(id) {
   const ride = await db.Ride.findById(id);
   const rideForClient = ride.toJSON();
-  const driver = await db.User.findOne({uid:ride.driver});
-  rideForClient.driver = driver.toJSON()
+  const driver = await db.User.findOne({ uid: ride.driver });
+  rideForClient.driver = driver.toJSON();
   return rideForClient;
 }
 
+async function updateRide({ uid }, { origin, dest, date, time, driver, id }) {
+  const objToUpdate = getChangedObj({
+    origin,
+    dest,
+    date,
+    time,
+    driver,
+    id
+  });
+  return await db.Ride.findOneAndUpdate({ uid }, objToUpdate, {
+    new: true
+  });
+}
 
-async function updateRide(uid, { origin, dest, date, time, driver, id }) {
-        const objToUpdate = getChangedObj({
-          origin,
-          dest,
-          date,
-          time,
-          driver,
-          id
-        });
-        return await db.Ride.findOneAndUpdate({uid}, objToUpdate, {
-          new: true
-        });
+async function joinRide(uid, _id) {
+  driverID = uid;
+  return await db.Ride.findOneAndUpdate(
+    _id,
+    { $push: { passengers: driverID } },
+    {
+      new: true
+    }
+  );
 }
 
 function getChangedObj(obj) {
@@ -77,21 +95,28 @@ async function search({ origin, dest, date }) {
   const response = [];
 
   const ridesString = await algo.findRide({
-    startLocation:origin,
-    endLocation:dest
-  })
+    startLocation: origin,
+    endLocation: dest
+  });
 
   const rides = JSON.parse(ridesString);
-
+  const drivesIndex = {};
   for (let i = 0; i < rides.length; i++) {
-    try{
-     let ride = await db.Ride.findById(rides[i].value.driveID);
-     const driver = await db.User.findOne({uid:ride.driver});
-     ride = ride.toObject();
-     ride.driver = driver.toObject();
+    try {
+      
+      if (drivesIndex[rides[i].value.driveID]) {
+        continue;
+      } else {
+        drivesIndex[rides[i].value.driveID] = true;
+      }
 
-     response.push(ride);
-    } catch(e){
+      let ride = await db.Ride.findById(rides[i].value.driveID);
+      const driver = await db.User.findOne({ uid: ride.driver });
+      ride = ride.toObject();
+      ride.driver = driver.toObject();
+
+      response.push(ride);
+    } catch (e) {
       console.error(`error: ${e.message}`);
     }
   }
@@ -108,7 +133,6 @@ async function aggregateByDest() {
 }
 
 async function mapReduceOrigin() {
-
   const o = {};
 
   o.map = function() {
@@ -128,5 +152,7 @@ module.exports = {
   deleteRide,
   search,
   aggregateByDest,
-  mapReduceOrigin,getById
+  mapReduceOrigin,
+  getById,
+  joinRide
 };

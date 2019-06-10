@@ -6,7 +6,9 @@ const rideSchema = new mongoose.Schema({
     date: 'date',
     time: 'string',
     driver:'string',
-    token: 'string'
+    passengers:[String],
+    numberOfSeatsAvailableInTheVehicle: 'number'
+
 }, { timestamps: true });
 
 

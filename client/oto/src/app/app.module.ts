@@ -99,6 +99,7 @@ export const httpInterceptorProviders = [
 // }
 
 import * as keys from './keys/keys.json';
+import { RateRideComponent } from './rate-ride/rate-ride.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import * as keys from './keys/keys.json';
     LiveUsersComponent,
     DestGraphDirective,
     CarSearchComponent,
-    PlaceAutocompleteComponent
+    PlaceAutocompleteComponent,
+    RateRideComponent
   ],
   imports: [
     CommonModule,

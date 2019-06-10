@@ -28,8 +28,8 @@ async function deleteUser(uid) {
     return await db.User.findOneAndDelete({uid});
 }
 
-async function updateUser(uid, { fullname, email }) {
-                const objToUpdate = getChangedObj({ fullname, email });
+async function updateUser(uid, { fullname, email, phone }) {
+                const objToUpdate = getChangedObj({ fullname, email, phone });
                 const user = await db.User.findOneAndUpdate({uid}, objToUpdate, { new: true });
                 return user;
 }

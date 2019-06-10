@@ -77,6 +77,17 @@ export class NewDriveComponent implements OnInit {
     this.rideSearch.dest = this.formattedAddress;
   }
 
+  joinRide(_id) {
+
+      this.httpClient.post('http://127.0.0.1:8080/ride/join', {_id}).subscribe(
+      data => {
+        console.log('POST Request is successful ', data);
+      },
+      error => {
+        console.log('Error', error);
+      }
+    );
+  }
   constructor(private httpClient: HttpClient, private router: Router) {}
 }
 

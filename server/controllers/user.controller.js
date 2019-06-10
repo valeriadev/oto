@@ -7,8 +7,8 @@ const url = require("url");
 async function createUser(req, res) {
   try {
   console.log(`Body of createUser: ${JSON.stringify(req.body)}`);
-  await userService.extendUser(req.body);
-  res.sendStatus(200);
+  const user = await userService.extendUser(req.body);
+  res.sendStatus(200).json({user});
   } catch(e){
     res.status(500).json({
       err:e.message

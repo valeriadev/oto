@@ -6,7 +6,8 @@ function convertRide(ride){
             origin:ride.origin,
             dest:ride.dest,
             date:ride.date,
-            token: ride.token
+            passengers: ride.passengers,
+            numberOfSeatsAvailableInTheVehicle:ride.numberOfSeatsAvailableInTheVehicle
         }
     }
 }
