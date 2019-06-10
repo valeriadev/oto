@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Ride } from '../your-schedule/ride.model';
 import {  Router } from '@angular/router';
 @Component({
-  selector: 'app-upcoming-carpools',
-  templateUrl: './upcoming-carpools.component.html',
-  styleUrls: ['./upcoming-carpools.component.css']
+  selector: 'app-all-suggest-rides',
+  templateUrl: './all-suggest-rides.component.html',
+  styleUrls: ['./all-suggest-rides.component.css']
 })
-export class UpcomingCarpoolsComponent implements OnInit {
+export class AllSuggestRidesComponent implements OnInit {
 
   rides = [];
   rideSearch = {

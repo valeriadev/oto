@@ -10,6 +10,7 @@ function defineRoutes(app) {
     app.get('/rides/stats/dest', rideController.ridesByDest)
     app.get('/rides/stats/origin', rideController.ridesByOrigin)
     app.post('/ride/join', authMiddleware.auth, rideController.joinRide) 
+    app.get('/ride/byUserId', authMiddleware.auth, rideController.findAllRidesByUserID)
     /*
     {"rideid":""}
     */

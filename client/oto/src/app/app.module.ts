@@ -100,6 +100,8 @@ export const httpInterceptorProviders = [
 
 import * as keys from './keys/keys.json';
 import { RateRideComponent } from './rate-ride/rate-ride.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AllSuggestRidesComponent } from './all-suggest-rides/all-suggest-rides.component';
 
 @NgModule({
   declarations: [
@@ -122,9 +124,11 @@ import { RateRideComponent } from './rate-ride/rate-ride.component';
     DestGraphDirective,
     CarSearchComponent,
     PlaceAutocompleteComponent,
-    RateRideComponent
+    RateRideComponent,
+    AllSuggestRidesComponent
   ],
   imports: [
+    MatDialogModule,
     CommonModule,
     MatListModule,
     FormsModule,

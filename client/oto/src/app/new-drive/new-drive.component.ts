@@ -81,6 +81,7 @@ export class NewDriveComponent implements OnInit {
 
       this.httpClient.post('http://127.0.0.1:8080/ride/join', {_id}).subscribe(
       data => {
+        alert('Joining succeeded');
         console.log('POST Request is successful ', data);
       },
       error => {

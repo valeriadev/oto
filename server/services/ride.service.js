@@ -56,6 +56,10 @@ async function updateRide({ uid }, { origin, dest, date, time, driver, id }) {
   });
 }
 
+async function findAllRidesByUserID(uid){
+  return await db.Ride.find({driver: uid});
+}
+
 async function joinRide(uid, _id) {
   driverID = uid;
   return await db.Ride.findOneAndUpdate(
@@ -103,7 +107,7 @@ async function search({ origin, dest, date }) {
   const drivesIndex = {};
   for (let i = 0; i < rides.length; i++) {
     try {
-      
+
       if (drivesIndex[rides[i].value.driveID]) {
         continue;
       } else {
@@ -154,5 +158,6 @@ module.exports = {
   aggregateByDest,
   mapReduceOrigin,
   getById,
-  joinRide
+  joinRide,
+  findAllRidesByUserID
 };
