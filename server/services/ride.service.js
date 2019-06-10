@@ -84,12 +84,16 @@ async function search({ origin, dest, date }) {
   const rides = JSON.parse(ridesString);
 
   for (let i = 0; i < rides.length; i++) {
+    try{
      let ride = await db.Ride.findById(rides[i].value.driveID);
      const driver = await db.User.findOne({uid:ride.driver});
      ride = ride.toObject();
      ride.driver = driver.toObject();
 
      response.push(ride);
+    } catch(e){
+      console.error(`error: ${e.message}`);
+    }
   }
 
   return response ? response : false;

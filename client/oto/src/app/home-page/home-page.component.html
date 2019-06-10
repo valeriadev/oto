@@ -1,3 +1,6 @@
+
+
+
 <div>
   <mat-toolbar>
     <img alt="Oto Logo" src="/assets/images/otoLogo.png" />
@@ -5,23 +8,32 @@
   </mat-toolbar>
 </div>
 
-
 <mat-tab-group *ngIf="!isLoading">
-  <mat-tab label="Profile">
+  <mat-tab class="label" label="Profile">
+
     <div>
         <img class="card-img-top avatar"  [src]="user.image" *ngIf="user.image" alt="User image">
         <img class="card-img-top avatar"  src="/assets/images/avatar.png" *ngIf="!user.image" alt="User image">
     </div>
 
+
     <app-user-profile></app-user-profile> </mat-tab>
-  <mat-tab label="Search Ride"><app-new-drive></app-new-drive></mat-tab>
-  <mat-tab label="Suggest New Ride"
+  <mat-tab class="label" label="Find a ride"><app-new-drive></app-new-drive></mat-tab>
+  <mat-tab class="label" label="Suggest new ride"
     ><app-create-ride></app-create-ride
   ></mat-tab>
-  <mat-tab label="Live Users">
+  <mat-tab class="label" label="Upcoming carpools">
+
+  </mat-tab>
+  <mat-tab class="label" label="Rate your rides">
+
+  </mat-tab>
+  <mat-tab class="label" label="Live users">
     <app-live-users></app-live-users>
   </mat-tab>
 </mat-tab-group>
+
+
 <!--
 <mat-tab label="User">
     <nav class="navbar navbar-default navbar-static-top navbar-inverse">

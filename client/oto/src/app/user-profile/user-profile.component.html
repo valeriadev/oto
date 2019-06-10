@@ -35,12 +35,5 @@
     </button>
   </div>
 </mat-card>
-<mat-form-field appearance="outline">
-    <mat-label>All users</mat-label>
-    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-  </mat-form-field>
 
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let user of users" [value]="user.firstname">{{user.firstname}} {{user.lastname}}</mat-option>
-  </mat-autocomplete>
 
