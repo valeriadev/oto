@@ -1,3 +1,5 @@
+<h1>Rate Your Rides:</h1>
+<h1><mat-icon fxFlex="10%">grade</mat-icon><mat-icon fxFlex="10%">grade</mat-icon><mat-icon fxFlex="10%">grade</mat-icon><mat-icon fxFlex="10%">grade</mat-icon><mat-icon fxFlex="10%">grade</mat-icon></h1>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <mat-card *ngFor="let ride of rides" class="card-picture">
     <mat-card-header>
@@ -10,12 +12,9 @@
       <p><b>Destination:</b> {{ ride.dest }}</p>
       <p> <mat-icon fxFlex="10%">calendar_today</mat-icon><b>Date:</b> {{ride.date}} </p>
       <p> <mat-icon fxFlex="10%">access_time</mat-icon> <b>Time:</b>  {{ride.time}}</p>
-      <p> <mat-icon fxFlex="10%">face</mat-icon> <span *ngIf="ride.driver"><b>Driver Name:</b> {{ ride.driver.fullname }}</span></p>
-
-
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button value="Rate" (click)="rateRide(ride._id)">Rate</button>
-      </mat-card-actions>
+      <button mat-button value="Rate" (click)="rateRide(ride._id)">Rate</button>
+    </mat-card-actions>
   </mat-card>
 </div>

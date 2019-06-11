@@ -45,6 +45,17 @@ async function findAllRidesByUserID(req, res){
   }
 }
 
+async function findAllPassengerRidesByUserID(req, res){
+  try {
+    const uid=req.user.uid;
+    const rides = await rideService.findAllPassengerRidesByUserID(uid);
+    res.status(200).json({ rides });
+  } catch (e) {
+    console.error("Failed to findAllRidesByUserID: " + e);
+    res.status(500).json({ error: "Can not findAllRidesByUserID" });
+  }
+}
+
 async function deleteRide(req, res) {
   try {
     const rideDelete = await rideService.deleteRide(req.query.id);
@@ -103,5 +114,6 @@ module.exports = {
   search,
   ridesByDest,ridesByOrigin,getById,
   joinRide,
-  findAllRidesByUserID
+  findAllRidesByUserID,
+  findAllPassengerRidesByUserID
 };

@@ -26,7 +26,22 @@ async function findRide({startLocation, endLocation}){
       } 
 }
 
+async function deleteRide({_id}){
+  try {
+      return await request.post("http://localhost:4567/otoServer/deleteRide", {
+        body: JSON.stringify({ _id }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+    } catch (e) {
+      console.error(`add ride to algo message:${e.message} \n stack: ${e.stack}`);
+    } 
+}
+
+
 module.exports = {
   sendNewRide,
-  findRide
+  findRide,
+  deleteRide
 };

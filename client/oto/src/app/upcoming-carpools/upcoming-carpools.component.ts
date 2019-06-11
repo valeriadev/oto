@@ -24,9 +24,9 @@ export class UpcomingCarpoolsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.httpClient.get(`http://127.0.0.1:8080/ride/byUserId`).subscribe(
+    this.httpClient.get(`http://127.0.0.1:8080/ride/passenger`).subscribe(
       (data: any) => {
-        console.log('Search Request byUserId is successful ', data);
+        console.log('Search Request byUserId passenger is successful ', data);
         this.rides = data.rides;
 
       },

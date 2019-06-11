@@ -1,5 +1,5 @@
 
-<h1>All Yours Suggestion Rides:</h1>
+<h1>Passenger:</h1>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <mat-card *ngFor="let ride of rides" class="card-picture">
     <mat-card-header>
@@ -13,8 +13,6 @@
       <p> <mat-icon fxFlex="10%">calendar_today</mat-icon><b>Date:</b> {{ride.date}} </p>
       <p> <mat-icon fxFlex="10%">access_time</mat-icon> <b>Time:</b>  {{ride.time}}</p>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>Delete The Ride</button>
-      </mat-card-actions>
+
   </mat-card>
 </div>

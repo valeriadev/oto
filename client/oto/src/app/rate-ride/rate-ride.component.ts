@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Ride } from '../your-schedule/ride.model';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-rate-ride',
@@ -7,21 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RateRideComponent implements OnInit {
 
-  constructor() { }
+ public rides = [];
+
+  formattedAddress;
+  rideSearch = {
+    origin: '',
+    dest: '',
+    date: '',
+    time: '',
+   // driver: '',
+   // id: ''
+  };
+  constructor(private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    this.httpClient.get(`http://127.0.0.1:8080/ride/passenger`).subscribe(
+      (data: any) => {
+        console.log('Search Request byUserId passenger is successful ', data);
+        this.rides = data.rides;
+
+      },
+      error => {
+        console.log('Error byUserId:', error);
+      }
+    );
   }
-  /*
-  rateRide(id) {
+
+
+  public rateRide(id) {
     this.router.navigateByUrl(`/ride/complete?id=${id}`);
   }
-  public handleOriginAddressChange(address: any) {
-    this.formattedAddress = address.formatted_address;
-    this.rideSearch.origin = this.formattedAddress;
-  }
-  public handleDestAddressChange(address: any) {
-    this.formattedAddress = address.formatted_address;
-    this.rideSearch.dest = this.formattedAddress;
-  }\
-  */
+
+
 }
+

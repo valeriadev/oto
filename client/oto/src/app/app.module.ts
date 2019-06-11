@@ -50,7 +50,6 @@ import {} from '@agm/core/services/google-maps-types';
 import {MapsAPILoader} from '@agm/core';
 // services
 import { TokenInterceptor } from './services/token.service';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
 import { DestGraphDirective } from './dest-graph.directive';
 import { CarSearchComponent } from './car-search/car-search.component';
@@ -119,7 +118,6 @@ import { AllSuggestRidesComponent } from './all-suggest-rides/all-suggest-rides.
     RegisterUserComponent,
     CreateRideComponent,
     MapComponent,
-    ProfileEditComponent,
     LiveUsersComponent,
     DestGraphDirective,
     CarSearchComponent,

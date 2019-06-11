@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {PeriodicElement} from './PeriodElement.module';
 import { Ride } from '../your-schedule/ride.model';
 import {  Router } from '@angular/router';
 

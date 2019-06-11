@@ -1,0 +1,31 @@
+mat-card{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  font-size: 1.5em;
+  line-height: 2;
+  text-align: center;
+}
+.example-full-width {
+  width: 100%;
+}
+.date {
+  width: 100%
+}
+mat-table{
+  font-size: 1em;
+}
+
+.card-picture {
+  margin-bottom: 2%;
+  float: left;
+  width: 28%;
+  padding: 0 10px;
+  margin: 2%;
+}
+
+  h1{
+    text-align: center;
+  }
+

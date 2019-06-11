@@ -30,8 +30,9 @@ async function createRide({
   return ride;
 }
 
-async function deleteRide(id) {
-  return await db.Ride.findByIdAndDelete(id);
+async function deleteRide(_id) {
+  await algo.deleteRide(_id);
+  return await db.Ride.findByIdAndDelete(_id);
 }
 
 async function getById(id) {
@@ -58,6 +59,13 @@ async function updateRide({ uid }, { origin, dest, date, time, driver, id }) {
 
 async function findAllRidesByUserID(uid){
   return await db.Ride.find({driver: uid});
+}
+
+async function findAllPassengerRidesByUserID(uid){
+  return await db.Ride.find({'passengers': { $in: uid }
+}, function(err, passengers) {
+    console.log("passengers id  " + passengers);
+});
 }
 
 async function joinRide(uid, _id) {
@@ -159,5 +167,6 @@ module.exports = {
   mapReduceOrigin,
   getById,
   joinRide,
-  findAllRidesByUserID
+  findAllRidesByUserID,
+  findAllPassengerRidesByUserID
 };
