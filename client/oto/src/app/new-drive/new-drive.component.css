@@ -1,17 +1,26 @@
 mat-card{
-  width: 70%;
+  width: 50%;
+  height: 600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
   font-size: 1.5em;
   line-height: 2;
   text-align: center;
-
+  background-image: url("/assets/images/1.png");
+  opacity: 0.80;
 }
 mat-table{
   font-size: 1em;
 }
 
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 100%;
+}
 .card-picture {
   margin-bottom: 2%;
   float: left;
@@ -36,6 +45,7 @@ mat-table{
 }
 button {
   background: orange;
+
 }
 table {
   border-collapse: collapse;

@@ -1,11 +1,14 @@
 mat-card{
   width: 50%;
+  height: 600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5%;
   font-size: 1.5em;
   line-height: 2;
   text-align: center;
+  background-image: url("/assets/images/1.png");
+  opacity: 0.80;
 }
 .example-full-width {
   width: 100%;
