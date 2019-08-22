@@ -4,8 +4,7 @@
     From to where?
   </p>
   <form class="example-form">
-
-      <mat-form-field class="example-full-width">
+     <!--<mat-form-field class="example-full-width">
           <mat-label>From</mat-label>
           <input matInput placeholder="From" [(ngModel)]="rideSearch.origin" name="origin">
         </mat-form-field>
@@ -15,18 +14,27 @@
             <mat-label>To</mat-label>
             <input matInput placeholder="To where?" [(ngModel)]="rideSearch.dest" name="dest">
           </mat-form-field>
-
-          <mat-form-field class="date">
-              <input
-                matInput
-                [matDatepicker]="picker"
-                placeholder="Choose a date"
-                [(ngModel)]="rideSearch.date"
-                name="date"
-              />
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+      //commented out area that doesn't have auto complete-->
+      <mat-form-field class="example-full-width" text>
+        <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="From"
+          (onAddressChange)="handleOriginAddressChange($event)" />
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <input matInput ngx-google-places-autocomplete #placesRef="ngx-places" placeholder="To"
+          (onAddressChange)="handleDestAddressChange($event)" />
+      </mat-form-field>
+      <mat-form-field class="date">
+        <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Choose a date"
+            [(ngModel)]="rideSearch.date"
+            name="date"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
 
     <!-- <mat-form-field class="date">

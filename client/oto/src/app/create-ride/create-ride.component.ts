@@ -28,7 +28,7 @@ export class CreateRideComponent implements OnInit {
     this.index = 0;
   }
   onDatePicker(event: MatDatepickerInputEvent<Date>) {
-    this.dates.push( event.value);
+    this.dates.push( event.value.toLocaleDateString());
   }
 
   removeDate(index) {
