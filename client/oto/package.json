@@ -33,7 +33,7 @@
     "body-parser": "^1.18.3",
     "core-js": "^2.5.4",
     "css-star-rating": "^1.2.4",
-    "d3": "^5.9.1",
+    "d3": "^7.6.1",
     "firebase": "^5.11.1",
     "firebaseui": "^4.0.0",
     "google-libphonenumber": "^3.2.2",
