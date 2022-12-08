@@ -12,11 +12,11 @@
   "dependencies": {
     "@types/googlemaps": "^3.30.19",
     "ahocorasick": "^1.0.2",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.5",
     "email-validator": "^2.0.4",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "firebase": "^6.1.0",
     "firebase-admin": "^8.0.0",
     "mongoose": "^5.4.15",
